@@ -1,0 +1,83 @@
+#bkgrd {
+    background-image: url("VFR_map.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#start {
+    width: 5%;
+    height: 10%;
+    position: fixed;
+    top: 180px;
+    left: 185px;
+}
+
+#st {
+    font-size: 24px;
+    color: white;
+    position: fixed;
+    top: 170px;
+    left: 215px;
+}
+
+#leg1 {
+    width: 5%;
+    height: 10%;
+    position: fixed;
+    top: 280px;
+    left: 260px;
+    z-index: -1;
+}
+
+#l1 {
+    font-size: 24px;
+    color: white;
+    position: fixed;
+    top: 270px;
+    left: 290px;
+}
+
+#leg2 {
+    width: 5%;
+    height: 10%;
+    position: fixed;
+    top: 375px;
+    left: 850px;
+}
+
+#l2 {
+    font-size: 24px;
+    color: white;
+    position: fixed;
+    top: 365px;
+    left: 880px;
+}
+
+#finish {
+    width: 5%;
+    height: 10%;
+    position: fixed;
+    top: 120px;
+    left: 1050px;
+}
+
+#fi {
+    font-size: 24px;
+    color: white;
+    position: fixed;
+    top: 110px;
+    left: 1080px;
+}
+
+#myButton {
+    font-size: 24px;
+    border-radius: 8px;
+}
+
+#myButton2 {
+    font-size: 24px;
+    border-radius: 8px;
+    position: fixed;
+    top: 5px;
+    left: 5px;
+}

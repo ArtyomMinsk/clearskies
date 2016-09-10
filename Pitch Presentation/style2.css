@@ -1,0 +1,32 @@
+#bkgrd2 {
+    background-image: url("above-the-clouds.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#done {
+    position: fixed;
+    opacity: 0.3;
+    z-index: -1
+}
+
+#myButton {
+    font-size: 24px;
+    border-radius: 8px;
+    position: fixed;
+    bottom: 20px;
+}
+
+#rest {
+    color: black;
+    font-size: 24px;
+    position: fixed;
+    margin-left: 100px;
+    text-align:left;
+    z-index: 1
+}
+
+#rest em {
+    font-size: 24px;
+    color: red;
+}
