@@ -4,4 +4,4 @@ from django.shortcuts import render
 
 
 def home(request):
-    return render(request, 'index.html', context=None)
+    return render(request, 'clearskies_app/index.html', context=None)
