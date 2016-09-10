@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     # http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    'clearskies_app.apps.ClearskiesAppConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
