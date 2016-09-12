@@ -50,3 +50,17 @@ html {
   color: azure;
   border-radius: 7px;
 }
+
+#trip {
+    font-size:24pt;
+}
+
+#departure{
+    font-size:16pt;
+    width: 75px;
+}
+
+#arrival_leg{
+    font-size:16pt;
+    width: 75px;
+}
