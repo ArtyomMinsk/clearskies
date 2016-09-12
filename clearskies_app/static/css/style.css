@@ -58,9 +58,11 @@ html {
 #departure{
     font-size:16pt;
     width: 75px;
+    border-radius: 4px;
 }
 
 #arrival_leg{
     font-size:16pt;
     width: 75px;
+    border-radius: 4px;
 }
