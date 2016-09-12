@@ -6,6 +6,7 @@ def home(request):
     return render(request, 'clearskies_app/index.html', context=None)
 
 def cloud_bases_report(request):
+    pass
     # print the list of
     #DEF  get coords of start and finish from DB
     #DEF  calc the rectangle
