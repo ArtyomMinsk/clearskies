@@ -10,3 +10,9 @@ class Airfield(models.Model):
     name = models.CharField(max_length=200)
     latitude = models.FloatField()
     longitude = models.FloatField()
+    city = models.CharField(max_length=200, blank=True)
+    state = models.CharField(max_length=200, blank=True)
+
+    def __str__(self):
+        return "{}-{}-{}, {}".format(self.identifier, self.name,
+                                     self.city, self.state)
