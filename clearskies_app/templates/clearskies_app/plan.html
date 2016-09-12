@@ -1,0 +1,15 @@
+{% extends 'clearskies_app/base.html' %}
+{% block title %}Welcome to ClearSkies{% endblock %}
+{% block content %}
+<div id="greeting">
+  <h1>Test</h1>
+  <form method="post">
+  {% csrf_token %}
+    <input type="text" name="start">
+    <input type="text" name="finish">
+    <input type="submit">
+  </form>
+</div>
+<p>{{start}}</p>
+<p>{{finish}}</p>
+{% endblock %}
