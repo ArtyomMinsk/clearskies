@@ -9,7 +9,7 @@ html {
 }
 
 .primary-content {
-
+  padding: 5%;
   max-width: 80%;
   background-image: linear-gradient(azure 75%, white);
   background-repeat: no-repeat;
@@ -50,6 +50,14 @@ html {
   color: azure;
   border-radius: 7px;
 }
+
+.ui-autocomplete {
+  max-height: 200px;
+  overflow-y: auto;
+  /* prevent horizontal scrollbar */
+  overflow-x: hidden;
+}
+
 
 #trip {
     font-size:24pt;

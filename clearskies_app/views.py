@@ -15,6 +15,7 @@ def cloud_bases_report(request):
 
 
 def plan(request):
+    airfields = Airfield.objects.all()
     if request.method == "POST":
         print(request.POST)
         start = Airfield.objects.get(identifier=request.POST['start'])
@@ -23,4 +24,5 @@ def plan(request):
         start = ''
         finish = ''
     return render(request, 'clearskies_app/plan.html', {'start': start,
-                                                        'finish': finish})
+                                                        'finish': finish,
+                                                        'airfields': airfields})

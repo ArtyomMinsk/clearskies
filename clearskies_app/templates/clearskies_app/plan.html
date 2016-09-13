@@ -1,15 +1,31 @@
 {% extends 'clearskies_app/base.html' %}
+{% load static %}
 {% block title %}Welcome to ClearSkies{% endblock %}
 {% block content %}
 <div id="greeting">
   <h1>Test</h1>
-  <form method="post">
-  {% csrf_token %}
-    <input type="text" name="start">
-    <input type="text" name="finish">
-    <input type="submit">
-  </form>
 </div>
+<form method="post">
+{% csrf_token %}
+  <div class="ui-widget">
+    <input type="text" name="start" class="tags">
+    <input type="submit">
+  </div>
+</form>
 <p>{{start}}</p>
 <p>{{finish}}</p>
+<script>
+$( function() {
+    var availableTags = [
+      {% for airfield in airfields %}
+      '{{airfield.identifier}}-{{airfield.name}}-{{airfield.city}}, {{airfield.state}}',
+      {% endfor %}
+    ];
+    $( ".tags" ).autocomplete({
+      source: availableTags,
+      minLength: 3,
+    });
+  } );
+</script>
+<!-- <script src="{% static 'js/autocomp.js' %}"> -->
 {% endblock %}
