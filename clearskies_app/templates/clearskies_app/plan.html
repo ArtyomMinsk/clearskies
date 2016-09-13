@@ -7,11 +7,12 @@
 </div>
 <form method="post">
 {% csrf_token %}
-  <div class="ui-widget">
-    <input type="text" name="start" class="tags">
-    <input type="submit">
+  <div class="ui-widget" id="legs">
+    <input type="text" class="tags">
   </div>
+  <!-- <input type="submit"> -->
 </form>
+<button id="addleg">Add Leg</button>
 <p>{{start}}</p>
 <p>{{finish}}</p>
 <script>
@@ -27,5 +28,6 @@ $( function() {
     });
   } );
 </script>
-<!-- <script src="{% static 'js/autocomp.js' %}"> -->
+<script src="{% static 'js/addleg.js' %}">
+</script>
 {% endblock %}
