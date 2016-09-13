@@ -24,3 +24,15 @@ def plan(request):
         finish = ''
     return render(request, 'clearskies_app/plan.html', {'start': start,
                                                         'finish': finish})
+
+
+def coord(request):
+    if request.method == "POST":
+        temp = Airfield.objects.get(identifier=request.POST['airport'])
+        testLAT = temp.latitude
+        testLON = temp.longitude
+    else:
+        testLAT = ''
+        testLON = ''
+    context = { 'testLAT': testLAT, 'testLON': testLON }
+    return render(request, 'clearskies_app/get_coord.html', context)
