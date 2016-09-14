@@ -72,15 +72,19 @@ def get_corridor_airports(request):
             step_thru = "lon"
             if startLON < finishLON:
                 increment = 0.1
+                cushion = 0.4
             else:
                 increment = -0.1
+                cushion = -0.4
         else:
             ratio = lon_diff / (lat_diff * 10)
             step_thru = "lat"
             if startLAT < finishLAT:
                 increment = 0.1
+                cushion = 0.4
             else:
                 increment = -0.1
+                cushion = -0.4
 
         count = 0  # delete when testng done
 
@@ -91,7 +95,7 @@ def get_corridor_airports(request):
             startP = startLAT
             finishP = finishLAT
 
-        for i in arange(startP, finishP + 0.4, increment):
+        for i in arange(startP, finishP + cushion, increment):
             for each_airport in selected_airports:
                 if step_thru == 'lon':
                     if each_airport.latitude <= startLAT + 0.4 and each_airport.latitude >= startLAT - 0.4 and each_airport.longitude <= i and each_airport.longitude >= i - 0.1:
