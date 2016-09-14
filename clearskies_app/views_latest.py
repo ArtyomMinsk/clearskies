@@ -8,18 +8,14 @@ def home(request):
     return render(request, 'clearskies_app/index.html', context=None)
 
 
-def Tindex(request):
-    return render(request, 'clearskies_app/Tindex.html')
-
-
 def TRW(request):
     if request.method == "POST":
         beg_url = 'https://www.aviationweather.gov/metar/data?ids='
         end_url = '&format=raw&hours=0&taf=off&layout=on&date=0'
         print("############     running     ###############")
         places = Airfield.objects.all()
-        count = 5000
-        stop = 6000
+        count = 4000
+        stop = 5000
         index = 0
         for each in places:
             if index > count and index < stop:
@@ -77,15 +73,19 @@ def get_corridor_airports(request):
             step_thru = "lon"
             if startLON < finishLON:
                 increment = 0.1
+                cushion = 0.4
             else:
                 increment = -0.1
+                cushion = -0.4
         else:
             ratio = lon_diff / (lat_diff * 10)
             step_thru = "lat"
             if startLAT < finishLAT:
                 increment = 0.1
+                cushion = 0.4
             else:
                 increment = -0.1
+                cushion = -0.4
 
         count = 0  # delete when testng done
 
@@ -96,7 +96,7 @@ def get_corridor_airports(request):
             startP = startLAT
             finishP = finishLAT
 
-        for i in arange(startP, finishP, increment):
+        for i in arange(startP, finishP + cushion, increment):
             for each_airport in selected_airports:
                 if step_thru == 'lon':
                     if each_airport.latitude <= startLAT + 0.4 and each_airport.latitude >= startLAT - 0.4 and each_airport.longitude <= i and each_airport.longitude >= i - 0.1:
@@ -109,7 +109,8 @@ def get_corridor_airports(request):
                         print("SUCCESS!!!!!", each_airport, each_airport.latitude, each_airport.longitude, count)
                         # get_data(each_airport.identifier)
 
-                    elif each_airport.longitude <= startLON + 0.4 and each_airport.longitude >= startLON - 0.4 and each_airport.latitude <= i and each_airport.latitude >= i - 0.1:
+                elif step_thru == 'lat':
+                    if each_airport.longitude <= startLON + 0.4 and each_airport.longitude >= startLON - 0.4 and each_airport.latitude <= i and each_airport.latitude >= i - 0.1:
                         count += 1
                         print("LON = ", each_airport.longitude, "    LAT = ", each_airport.latitude)
                         if startLON > finishLON:
@@ -117,7 +118,7 @@ def get_corridor_airports(request):
                         else:
                             startLON += ratio
                         print("SUCCESS!!!!!", each_airport, each_airport.latitude, each_airport.longitude, count)
-                        # get_data(each_airport.identifier)
+                    # get_data(each_airport.identifier)
         #
         # context = {'startLAT': startLAT,
         #            'startLON': startLON,
@@ -129,26 +130,7 @@ def get_corridor_airports(request):
         start = ''
         finish = ''
 
-    return render(request, 'clearskies_app/get_coord.html', {})
-
-
-def plan(request):
-    airfields = Airfield.objects.all()
-    # if request.method == "POST":
-    #     print(request.POST)
-    #     start = Airfield.objects.get(identifier=request.POST['start'])
-    #     finish = Airfield.objects.get(identifier=request.POST['finish'])
-    # else:
-    start = ''
-    finish = ''
-    return render(request, 'clearskies_app/plan.html', {'start': start,
-                                                        'finish': finish,
-                                                        'airfields': airfields})
-
-
-# this function gets all airports in the corridor
-def get_corridor_airports(request):
-    pass
+    return render(request, 'clearskies_app/test.html', {})
 
 
 def get_data(AI):
@@ -175,13 +157,5 @@ def coord(request):
     else:
         testLAT = ''
         testLON = ''
-    context = {'testLAT': testLAT, 'testLON': testLON}
+    context = { 'testLAT': testLAT, 'testLON': testLON }
     return render(request, 'clearskies_app/get_coord.html', context)
-
-
-def temporary(request):
-    pass
-
-
-def get_coord(request):
-    return render(request, 'clearskies_app/get_coord.html', {})
