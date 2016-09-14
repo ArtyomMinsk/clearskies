@@ -91,7 +91,7 @@ def get_corridor_airports(request):
             startP = startLAT
             finishP = finishLAT
 
-        for i in arange(startP, finishP, increment):
+        for i in arange(startP, finishP + 0.4, increment):
             for each_airport in selected_airports:
                 if step_thru == 'lon':
                     if each_airport.latitude <= startLAT + 0.4 and each_airport.latitude >= startLAT - 0.4 and each_airport.longitude <= i and each_airport.longitude >= i - 0.1:
@@ -104,7 +104,8 @@ def get_corridor_airports(request):
                         print("SUCCESS!!!!!", each_airport, each_airport.latitude, each_airport.longitude, count)
                         # get_data(each_airport.identifier)
 
-                    elif each_airport.longitude <= startLON + 0.4 and each_airport.longitude >= startLON - 0.4 and each_airport.latitude <= i and each_airport.latitude >= i - 0.1:
+                elif step_thru == 'lat':
+                    if each_airport.longitude <= startLON + 0.4 and each_airport.longitude >= startLON - 0.4 and each_airport.latitude <= i and each_airport.latitude >= i - 0.1:
                         count += 1
                         print("LON = ", each_airport.longitude, "    LAT = ", each_airport.latitude)
                         if startLON > finishLON:
@@ -112,7 +113,7 @@ def get_corridor_airports(request):
                         else:
                             startLON += ratio
                         print("SUCCESS!!!!!", each_airport, each_airport.latitude, each_airport.longitude, count)
-                        # get_data(each_airport.identifier)
+                    # get_data(each_airport.identifier)
         #
         # context = {'startLAT': startLAT,
         #            'startLON': startLON,
@@ -124,7 +125,7 @@ def get_corridor_airports(request):
         start = ''
         finish = ''
 
-    return render(request, 'clearskies_app/plan.html', {})
+    return render(request, 'clearskies_app/test.html', {})
 
 
 def get_data(AI):

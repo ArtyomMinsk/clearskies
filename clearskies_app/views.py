@@ -27,6 +27,10 @@ def plan(request):
                                                         'finish': finish,
                                                         'airfields': airfields})
 
+# this function gets all airports in the corridor
+def get_corridor_airports(request):
+    pass
+
 
 def coord(request):
     if request.method == "POST":
