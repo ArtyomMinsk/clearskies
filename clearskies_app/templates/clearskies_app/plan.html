@@ -11,12 +11,19 @@
     <li><input type="text" class="tags"></li>
   </ul>
   <!-- <input type="submit"> -->
+  <ul>
+    <li><input type="submit"></li>
+  </ul>
 </form>
 <ul>
-<li><button id="addField"><img src="{% static 'img/plus_symbol.svg' %}"><span>ADD WAYPOINT</span></button></li>
+  <li>
+    <button id="addField">
+      <img src="{% static 'img/plus_symbol.svg' %}">
+      <span>ADD WAYPOINT</span>
+    </button>
+  </li>
 </ul>
 <script>
-// $( function() {
   var availableTags = [
     {% for airfield in airfields %}
     '{{airfield.identifier}}-{{airfield.name}}-{{airfield.city}}, {{airfield.state}}',
@@ -44,14 +51,7 @@
       $(this).prev().remove();
       $(this).parent().remove()
       $(this).remove();
-      // return false;
     });
   })
-
-  //   $( ".tags" ).autocomplete({
-  //     source: availableTags,
-  //     minLength: 3,
-  //   });
-  // } );
 </script>
 {% endblock %}
