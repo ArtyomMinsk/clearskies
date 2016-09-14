@@ -1,15 +1,55 @@
 {% extends 'clearskies_app/base.html' %}
+{% load static %}
 {% block title %}Welcome to ClearSkies{% endblock %}
 {% block content %}
-<div id="gc">
-  <h1>Test #2 get airports in the corridor</h1>
-  <form method="post" action="/test/">
-  {% csrf_token %}
-    <input type="text" name="start" required>
-    <input type="text" name="finish" required>
-    <input type="submit">
-  </form>
+<div id="greeting">
+  <h1>Test</h1>
 </div>
-<p>{{start}}</p>
-<p>{{finish}}</p>
+<form method="post">
+{% csrf_token %}
+  <div class="ui-widget" id="legs">
+    <input type="text" name="waypoint">
+    <input type="text" name="waypoint">
+  </div>
+  <input type="submit">
+</form>
+<button id="addField">Add Waypoint</button>
+<script>
+// $( function() {
+  var availableTags = [
+    {% for airfield in airfields %}
+    '{{airfield.identifier}}-{{airfield.name}}-{{airfield.city}}, {{airfield.state}}',
+    {% endfor %}
+  ];
+  $('.tags').on("focus", function(){
+    $(this).autocomplete({
+     minLength: 2,
+     source: availableTags
+      });
+    });
+
+  $('#addField').click(function(event) {
+    event.preventDefault();
+    $('.ui-widget').append('<input name="waypoint" class="tags"><button class="remove">X</button>');
+    $('.tags').on("focus", function(){
+      $(this).autocomplete({
+       minLength: 2,
+       source: availableTags
+        });
+      });
+    $('.remove').click(function(event) {
+      event.preventDefault();
+      console.log('Hello');
+      $(this).prev().remove();
+      $(this).remove();
+      // return false;
+    });
+  })
+
+  //   $( ".tags" ).autocomplete({
+  //     source: availableTags,
+  //     minLength: 3,
+  //   });
+  // } );
+</script>
 {% endblock %}

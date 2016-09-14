@@ -36,98 +36,116 @@ def TRW(request):
     return render(request, 'clearskies_app/plan.html', {})
 
 
-def get_corridor_airports(request):
-    if request.method == "POST":
-        print("*********", request.POST)
-        start = Airfield.objects.get(identifier=request.POST['start'])
-        finish = Airfield.objects.get(identifier=request.POST['finish'])
-        startLAT = start.latitude
-        startLON = start.longitude
-        finishLAT = finish.latitude
-        finishLON = finish.longitude
-        print("startLAT", startLAT, "startLON", startLON, "finishLAT", finishLAT, "finishLON", finishLON)
-        print("*********")
-        if startLAT < finishLAT:
-            x1 = startLAT
-            x2 = finishLAT
-        else:
-            x2 = startLAT
-            x1 = finishLAT
+def get_corridor_airports(st, fin):
+    airport_weather =[]
+    # if request.method == "POST":
+    # print("IT IS A POST REQUEST!!!---------------------->", request.POST)
+    start = Airfield.objects.get(identifier=st)
+    finish = Airfield.objects.get(identifier=fin)
+    startLAT = start.latitude
+    startLON = start.longitude
+    finishLAT = finish.latitude
+    finishLON = finish.longitude
+    print("startLAT", startLAT, "startLON", startLON, "finishLAT", finishLAT, "finishLON", finishLON)
+    print("*********")
+    if startLAT < finishLAT:
+        x1 = startLAT
+        x2 = finishLAT
+    else:
+        x2 = startLAT
+        x1 = finishLAT
+    if startLON < finishLON:
+        y1 = startLON
+        y2 = finishLON
+    else:
+        y2 = startLON
+        y1 = finishLON
+    selected_airports = Airfield.objects.filter(latitude__gte=x1,
+                                                latitude__lte=x2,
+                                                longitude__gte=y1,
+                                                longitude__lte=y2)
+    # print("selected_airports: ", *selected_airports, sep='\n')
+    print(len(selected_airports))
+    lat_diff = abs(startLAT - finishLAT)
+    lon_diff = abs(startLON - finishLON)
+    if lon_diff > lat_diff:
+        ratio = lat_diff / (lon_diff * 10)
+        step_thru = "lon"
         if startLON < finishLON:
-            y1 = startLON
-            y2 = finishLON
+            increment = 0.1
+            cushion = 0.4
         else:
-            y2 = startLON
-            y1 = finishLON
-        selected_airports = Airfield.objects.filter(latitude__gte=x1,
-                                                    latitude__lte=x2,
-                                                    longitude__gte=y1,
-                                                    longitude__lte=y2)
-        print("selected_airports: ", *selected_airports, sep='\n')
-        print(len(selected_airports))
-        lat_diff = abs(startLAT - finishLAT)
-        lon_diff = abs(startLON - finishLON)
-        if lon_diff > lat_diff:
-            ratio = lat_diff / (lon_diff * 10)
-            step_thru = "lon"
-            if startLON < finishLON:
-                increment = 0.1
-                cushion = 0.4
-            else:
-                increment = -0.1
-                cushion = -0.4
+            increment = -0.1
+            cushion = -0.4
+    else:
+        ratio = lon_diff / (lat_diff * 10)
+        step_thru = "lat"
+        if startLAT < finishLAT:
+            increment = 0.1
+            cushion = 0.4
         else:
-            ratio = lon_diff / (lat_diff * 10)
-            step_thru = "lat"
-            if startLAT < finishLAT:
-                increment = 0.1
-                cushion = 0.4
-            else:
-                increment = -0.1
-                cushion = -0.4
+            increment = -0.1
+            cushion = -0.4
 
-        count = 0  # delete when testng done
+    count = 0  # delete when testng done
 
-        if step_thru == "lon":
-            startP = startLON
-            finishP = finishLON
-        else:
-            startP = startLAT
-            finishP = finishLAT
+    if step_thru == "lon":
+        startP = startLON
+        finishP = finishLON
+    else:
+        startP = startLAT
+        finishP = finishLAT
 
-        for i in arange(startP, finishP + cushion, increment):
-            for each_airport in selected_airports:
-                if step_thru == 'lon':
-                    if each_airport.latitude <= startLAT + 0.4 and each_airport.latitude >= startLAT - 0.4 and each_airport.longitude <= i and each_airport.longitude >= i - 0.1:
-                        count += 1
-                        print("LON = ", each_airport.longitude, "    LAT = ", each_airport.latitude)
-                        if startLAT > finishLAT:
-                            startLAT -= ratio
-                        else:
-                            startLAT += ratio
-                        print("SUCCESS!!!!!", each_airport, each_airport.latitude, each_airport.longitude, count)
-                        # get_data(each_airport.identifier)
-
-                elif step_thru == 'lat':
-                    if each_airport.longitude <= startLON + 0.4 and each_airport.longitude >= startLON - 0.4 and each_airport.latitude <= i and each_airport.latitude >= i - 0.1:
-                        count += 1
-                        print("LON = ", each_airport.longitude, "    LAT = ", each_airport.latitude)
-                        if startLON > finishLON:
-                            startLON -= ratio
-                        else:
-                            startLON += ratio
-                        print("SUCCESS!!!!!", each_airport, each_airport.latitude, each_airport.longitude, count)
+    for i in arange(startP, finishP + cushion, increment):
+        for each_airport in selected_airports:
+            if step_thru == 'lon':
+                if each_airport.latitude <= startLAT + 0.4 and each_airport.latitude >= startLAT - 0.4 and each_airport.longitude <= i and each_airport.longitude >= i - 0.1:
+                    count += 1
+                    print("LAT = ", each_airport.latitude, "    LON = ", each_airport.longitude)
+                    if startLAT > finishLAT:
+                        startLAT -= ratio
+                    else:
+                        startLAT += ratio
+                    print("SUCCESS!!!!!", each_airport, each_airport.latitude, each_airport.longitude, count)
                     # get_data(each_airport.identifier)
+                    airport_weather.append("cloudy" + str(each_airport.latitude))
+
+            elif step_thru == 'lat':
+                if each_airport.longitude <= startLON + 0.4 and each_airport.longitude >= startLON - 0.4 and each_airport.latitude <= i and each_airport.latitude >= i - 0.1:
+                    count += 1
+                    print("LAT = ", each_airport.latitude, "    LON = ", each_airport.longitude)
+                    if startLON > finishLON:
+                        startLON -= ratio
+                    else:
+                        startLON += ratio
+                    print("SUCCESS!!!!!", each_airport, each_airport.latitude, each_airport.longitude, count)
+                    # get_data(each_airport.identifier)
+                    airport_weather.append("cloudy" + str(each_airport.longitude))
         #
         # context = {'startLAT': startLAT,
         #            'startLON': startLON,
         #            'finishLAT': finishLAT,
         #            'finishLON': finishLON
         #     }
-    else:
-        print("IT IS NOT POST REQUEST!!!!!!!!!!!")
-        start = ''
-        finish = ''
+    # else:
+    #     print("IT IS NOT POST REQUEST!!!!!!!!!!!")
+    #     start = ''
+    #     finish = ''
+
+    return airport_weather
+
+
+# this function gets the all airports in the whole flight path
+def legs(request):
+    if request.method == "POST":
+        print("IT IS A POST REQUEST!!!---------------------->", request.POST)
+        identifiers = request.POST.getlist('waypoint')
+        print(identifiers, type(identifiers))
+
+        for i in range(len(identifiers)):
+            if (i + 1) != len(identifiers):
+                weather_list = get_corridor_airports(identifiers[i], identifiers[i + 1])
+        print("weather_list: ", weather_list)
 
     return render(request, 'clearskies_app/test.html', {})
 
