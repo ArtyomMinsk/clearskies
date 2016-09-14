@@ -57,6 +57,19 @@ img {
   width: 20px;
   background-color: transparent;
   border: none;
+  margin: auto;
+}
+
+#addField {
+  height: 30px;
+  width: 30px;
+  background-color: transparent;
+  border: none;
+  margin: auto;
+}
+
+button:focus {
+  outline: none;
 }
 
 #trip {
