@@ -12,17 +12,16 @@
   </ul>
   <!-- <input type="submit"> -->
   <ul>
-    <li><input type="submit"></li>
+    <li>
+      <button id="addField">
+        <img src="{% static 'img/plus_symbol.svg' %}">
+        <span>ADD WAYPOINT</span>
+      </button>
+    </li>
+    <li><input type="submit" class="submit" value="WHAT'S THE CEILING?"></li>
   </ul>
 </form>
-<ul>
-  <li>
-    <button id="addField">
-      <img src="{% static 'img/plus_symbol.svg' %}">
-      <span>ADD WAYPOINT</span>
-    </button>
-  </li>
-</ul>
+
 <script>
   var availableTags = [
     {% for airfield in airfields %}

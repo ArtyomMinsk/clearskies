@@ -89,6 +89,15 @@ button:focus {
   outline: none;
 }
 
+.submit {
+  border: none;
+  background-color: darkslategrey;
+  color: azure;
+  font-size: 20px;
+  font-weight: 100;
+  border: 2px solid cadetblue;
+}
+
 #trip {
     font-size:24pt;
 }
