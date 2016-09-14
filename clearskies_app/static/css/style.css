@@ -41,26 +41,19 @@ html {
   letter-spacing: -0.1rem;
 }
 
-button {
-  background-color: darkslategrey;
-  width: 150px;
-  height: 50px;
-  font-family: sans-serif;
-  font-size: 20px;
-  color: azure;
+img {
+  max-height: 100%;
+  /*max-width: 100%;*/
 }
 
-.remove_waypoint {
-  height: 100%;
-  background-color: transparent;
-  border: none;
-  color: darkslategrey;
+ul {
+  list-style: none;
+  margin: auto;
 }
 
-.remove_waypoint:hover {
-  color: cadetblue;
+ul li {
+  padding: 5px 0;
 }
-
 
 .ui-autocomplete {
   max-height: 200px;
@@ -69,6 +62,41 @@ button {
   overflow-x: hidden;
 }
 
+.remove {
+  height: 20px;
+  width: 20px;
+  background-color: transparent;
+  border: none;
+  margin: auto;
+}
+
+#addField {
+  height: 50px;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  font-weight: 200;
+  margin: 5px 0;
+}
+
+#addField img {
+  margin: -13px 0;
+  padding: 0;
+
+}
+
+button:focus {
+  outline: none;
+}
+
+.submit {
+  border: none;
+  background-color: darkslategrey;
+  color: azure;
+  font-size: 20px;
+  font-weight: 100;
+  border: 2px solid cadetblue;
+}
 
 #trip {
     font-size:24pt;

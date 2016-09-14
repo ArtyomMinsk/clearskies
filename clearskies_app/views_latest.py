@@ -3,6 +3,7 @@ from .models import Airfield
 from numpy import arange
 import requests
 
+
 def home(request):
     return render(request, 'clearskies_app/index.html', context=None)
 
