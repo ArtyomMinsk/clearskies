@@ -29,7 +29,7 @@
 
   $('#addField').click(function(event) {
     event.preventDefault();
-    $('.ui-widget').append('<input name="waypoint" class="tags"><button class="remove">X</button>');
+    $('.ui-widget').append('<input name="waypoint" class="tags"><button class="remove"><img src="{% static "img/cross-solid.png" %}"></button>');
     $('.tags').on("focus", function(){
       $(this).autocomplete({
        minLength: 2,
