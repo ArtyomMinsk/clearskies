@@ -42,7 +42,17 @@ html {
 }
 
 img {
-  max-width: 100%;
+  max-height: 100%;
+  /*max-width: 100%;*/
+}
+
+ul {
+  list-style: none;
+  margin: auto;
+}
+
+ul li {
+  padding: 5px 0;
 }
 
 .ui-autocomplete {
@@ -61,11 +71,18 @@ img {
 }
 
 #addField {
-  height: 30px;
-  width: 30px;
+  height: 50px;
   background-color: transparent;
   border: none;
-  margin: auto;
+  font-size: 20px;
+  font-weight: 200;
+  margin: 5px 0;
+}
+
+#addField img {
+  margin: -13px 0;
+  padding: 0;
+
 }
 
 button:focus {

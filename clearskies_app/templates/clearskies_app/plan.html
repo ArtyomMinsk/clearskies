@@ -7,12 +7,14 @@
 </div>
 <form method="post">
 {% csrf_token %}
-  <div class="ui-widget" id="legs">
-    <input type="text" class="tags">
-  </div>
+  <ul class="ui-widget" id="legs">
+    <li><input type="text" class="tags"></li>
+  </ul>
   <!-- <input type="submit"> -->
 </form>
-<button id="addField"><img src="{% static 'img/plus-outline.png' %}"> ADD WAYPOINT</button>
+<ul>
+<li><button id="addField"><img src="{% static 'img/plus_symbol.svg' %}"><span>ADD WAYPOINT</span></button></li>
+</ul>
 <script>
 // $( function() {
   var availableTags = [
@@ -29,7 +31,7 @@
 
   $('#addField').click(function(event) {
     event.preventDefault();
-    $('.ui-widget').append('<input name="waypoint" class="tags"><button class="remove"><img src="{% static "img/cross-solid.png" %}"></button>');
+    $('.ui-widget').append('<li><input name="waypoint" class="tags"><button class="remove"><img src="{% static "img/deleteglyph.svg" %}"></button></li>');
     $('.tags').on("focus", function(){
       $(this).autocomplete({
        minLength: 2,
@@ -40,6 +42,7 @@
       event.preventDefault();
       console.log('Hello');
       $(this).prev().remove();
+      $(this).parent().remove()
       $(this).remove();
       // return false;
     });
