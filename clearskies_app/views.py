@@ -143,12 +143,51 @@ def legs(request):
         for i in range(len(identifiers)):
             if (i + 1) != len(identifiers):
                 weather_list = get_corridor_airports(identifiers[i], identifiers[i + 1])
-                # check_num_reports(len(weather_list))
+
         print("weather_list: ")
-        for each in weather_list:
+        # for each in weather_list:
+        #     print(each)
+        cloud_bases = get_cloud_bases(weather_list)
+        for each in cloud_bases:
             print(each)
 
     return render(request, 'clearskies_app/test.html', {})
+
+
+def get_cloud_bases(wlist):
+    abbreviations_clear = ['CLR', 'SKC', 'VV']
+    abbreviations_clouds = ['FEW', 'SCT', 'BKN', 'OVC']
+    send_back_list = []
+    for each in wlist:
+        if each[1] == "K":
+            send_back_list.append(each[1:5])
+        temp = is_it_clear(send_back_list, wlist, abbreviations_clear, each)
+        if temp is None:
+            cloud_data = ""
+            for every in abbreviations_clouds:
+                if every in each:
+                    print(each, every, each)
+                    how_many = each.count(every)
+                    text_pointer = 0
+                    # for i in range((how_many+1)):
+                    if how_many > 0:
+                        for q in range(how_many):
+                            text_location = each.find(every, text_pointer)
+                            text_pointer = text_location + 3
+                            cloud_data += each[text_location:text_location + 7] + " "
+                    send_back_list.append(cloud_data)
+            send_back_list.append("XXXENDXXX")
+        else:
+            send_back_list.append(temp)
+    return send_back_list
+
+def is_it_clear(send_back_list, wlist, abbreviations_clear, each):
+    for every in abbreviations_clear:
+        if every in each:
+            print(every*10)
+            send_back_list.append(every)
+            send_back_list.append("XXXENDXXX")
+            return send_back_list
 
 
 # def check_num_reports(enough):
