@@ -149,7 +149,7 @@ def get_data(AI):
     text = res.text
     find_beg = "<!-- Data starts here -->"
     find_end = "<br /><hr"
-    beg_position_of_data = text.find(find_beg) + 25
+    beg_position_of_data = text.find(find_beg) + 26
     end_position_of_data = text.find(find_end)
     if "No METAR found" in text[beg_position_of_data:end_position_of_data]:
         return None
