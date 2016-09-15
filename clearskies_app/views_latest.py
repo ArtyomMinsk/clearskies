@@ -38,10 +38,10 @@ def TRW(request):
 
 
 def get_corridor_airports(st, fin):
-    airport_weather =[]
-    # if request.method == "POST":
-    # print("IT IS A POST REQUEST!!!---------------------->", request.POST)
+    airport_weather = []
     start = Airfield.objects.get(identifier=st)
+    wx = get_data(start.identifier)
+    airport_weather.append(wx)
     finish = Airfield.objects.get(identifier=fin)
     startLAT = start.latitude
     startLON = start.longitude
@@ -61,6 +61,17 @@ def get_corridor_airports(st, fin):
     else:
         y2 = startLON
         y1 = finishLON
+    # check for min width
+    if x2 - x1 < 1.0:
+        short = (1-(x2-x1))/2
+        x1 -= short
+        x2 += short
+
+    if y2 - y1 < 1.0:
+        short = (1-(y2-y1))/2
+        y1 -= short
+        y2 += short
+
     selected_airports = Airfield.objects.filter(latitude__gte=x1,
                                                 latitude__lte=x2,
                                                 longitude__gte=y1,
@@ -72,23 +83,25 @@ def get_corridor_airports(st, fin):
     if lon_diff > lat_diff:
         ratio = lat_diff / (lon_diff * 10)
         step_thru = "lon"
+        # avg_stations = round(lon_diff)
         if startLON < finishLON:
             increment = 0.1
-            cushion = 0.4
+            extend = 0.4
         else:
             increment = -0.1
-            cushion = -0.4
+            extend = -0.4
     else:
         ratio = lon_diff / (lat_diff * 10)
         step_thru = "lat"
+        # avg_stations = round(lat_diff)
         if startLAT < finishLAT:
             increment = 0.1
-            cushion = 0.4
+            extend = 0.4
         else:
             increment = -0.1
-            cushion = -0.4
+            extend = -0.4
 
-    count = 0  # delete when testng done
+    count = 1  # delete when testng done
 
     if step_thru == "lon":
         startP = startLON
@@ -97,42 +110,42 @@ def get_corridor_airports(st, fin):
         startP = startLAT
         finishP = finishLAT
 
-    for i in arange(startP, finishP + cushion, increment):
+    for i in arange(startP, finishP + extend, increment):
         for each_airport in selected_airports:
             if step_thru == 'lon':
                 if each_airport.latitude <= startLAT + 0.4 and each_airport.latitude >= startLAT - 0.4 and each_airport.longitude <= i and each_airport.longitude >= i - 0.1:
-                    count += 1
                     print("LAT = ", each_airport.latitude, "    LON = ", each_airport.longitude)
                     if startLAT > finishLAT:
                         startLAT -= ratio
                     else:
                         startLAT += ratio
-                    print("SUCCESS!!!!!", each_airport, each_airport.latitude, each_airport.longitude, count)
-                    # get_data(each_airport.identifier)
-                    airport_weather.append("cloudy" + str(each_airport.latitude))
+                    print("LAT-SUCCESS!!!!!", each_airport, each_airport.latitude, each_airport.longitude, count)
+                    wx = get_data(each_airport.identifier)
+                    airport_weather.append(wx)
+                    count += 1
 
             elif step_thru == 'lat':
                 if each_airport.longitude <= startLON + 0.4 and each_airport.longitude >= startLON - 0.4 and each_airport.latitude <= i and each_airport.latitude >= i - 0.1:
-                    count += 1
                     print("LAT = ", each_airport.latitude, "    LON = ", each_airport.longitude)
                     if startLON > finishLON:
                         startLON -= ratio
                     else:
                         startLON += ratio
-                    print("SUCCESS!!!!!", each_airport, each_airport.latitude, each_airport.longitude, count)
-                    # get_data(each_airport.identifier)
-                    airport_weather.append("cloudy" + str(each_airport.longitude))
-        #
-        # context = {'startLAT': startLAT,
-        #            'startLON': startLON,
-        #            'finishLAT': finishLAT,
-        #            'finishLON': finishLON
-        #     }
-    # else:
-    #     print("IT IS NOT POST REQUEST!!!!!!!!!!!")
-    #     start = ''
-    #     finish = ''
+                    print("LON-SUCCESS!!!!!", each_airport, each_airport.latitude, each_airport.longitude, count)
+                    wx = get_data(each_airport.identifier)
+                    airport_weather.append(wx)
+                    count += 1
 
+    wx = get_data(finish.identifier)
+    airport_weather.append(wx)
+    dup = len(airport_weather) - 1
+    print(dup)
+    for i in range(dup, 0, -1):
+        if airport_weather[i] == airport_weather[i-1] or airport_weather[i] == airport_weather[i-2]:
+            airport_weather.pop(i)
+            print("GOT POPPED !!!!!!!")
+        print(airport_weather[i],i, "yourfucking stupid !!!")
+    print(airport_weather, "WWWWWWWWWW")
     return airport_weather
 
 
@@ -146,9 +159,18 @@ def legs(request):
         for i in range(len(identifiers)):
             if (i + 1) != len(identifiers):
                 weather_list = get_corridor_airports(identifiers[i], identifiers[i + 1])
-        print("weather_list: ", weather_list)
+                # check_num_reports(len(weather_list))
+        print("weather_list: ")
+        for each in weather_list:
+            print(each)
 
     return render(request, 'clearskies_app/test.html', {})
+
+
+# def check_num_reports(enough):
+    # if enough < avg_stations:
+        #report to user that area is being expanded
+        # cushion += .1
 
 
 def get_data(AI):
@@ -164,6 +186,7 @@ def get_data(AI):
     if "No METAR found" not in text[beg_position_of_data:end_position_of_data]:
         print("\n\n\n**********   GOT WEATHER   *************")
         print(text[beg_position_of_data:end_position_of_data])
+    return text[beg_position_of_data:end_position_of_data]
 
 
 # Delete this when done testing
