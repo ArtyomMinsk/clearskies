@@ -54,7 +54,7 @@ class METAR:
             returnstring += '00 feet AGL'
         self.ceiling.append(returnstring)
 
-    def parse_number(string):
+    def parse_number(self, string):
         while string[0] == '0':
             string = string[1:]
         return int(string)
