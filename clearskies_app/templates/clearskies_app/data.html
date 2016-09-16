@@ -1,0 +1,12 @@
+{ {% for datapoint in full_list %}
+  {"airport":
+    {
+     "name":"{{datapoint.0.name}}",
+     "city":"{{datapoint.0.city}}",
+     "state":"{{datapoint.0.state}}",
+     "latitude":{{datapoint.0.latitude}},
+     "longitude":{{datapoint.0.longitude}}
+    }
+  "weather":"{{datapoint.1}}"}
+{% endfor %}
+}
