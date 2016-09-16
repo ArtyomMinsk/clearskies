@@ -17,6 +17,9 @@ class Airfield(models.Model):
         return "{}-{}-{}, {}".format(self.identifier, self.name,
                                      self.city, self.state)
 
+    def __eq__(self, other):
+        return self.identifier == other.identifier
+
 
 class METAR:
     def __init__(self, string):
@@ -58,6 +61,9 @@ class METAR:
         while string[0] == '0':
             string = string[1:]
         return int(string)
+
+    def __eq__(self, other):
+        return self.identifier == other.identifier
     #
     # def parse_windspeed(self, item):
     #     self.windbearing = item[:3]
