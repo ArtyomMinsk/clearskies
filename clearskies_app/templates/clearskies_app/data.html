@@ -7,6 +7,6 @@
      "latitude":{{datapoint.0.latitude}},
      "longitude":{{datapoint.0.longitude}}
     }
-  "weather":"{{datapoint.1}}"}
+  "weather":[{% for item in datapoint.1.ceiling %}"{{item}}",{% endfor %}]}
 {% endfor %}
 }
