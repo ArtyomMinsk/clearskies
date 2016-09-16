@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Airfield
+from .models import Airfield, METAR
 from numpy import arange
 import requests
 
