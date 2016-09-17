@@ -19,7 +19,7 @@ def get_corridor_airports(st, fin):
     start = Airfield.objects.get(identifier=st)
     wx = get_data(start.identifier)
     if wx:
-        airport_weather.append((start, wx))
+        airport_weather.append((start, METAR(wx)))
     finish = Airfield.objects.get(identifier=fin)
     startLAT = start.latitude
     startLON = start.longitude
@@ -100,7 +100,7 @@ def get_corridor_airports(st, fin):
                     # print("LAT-SUCCESS!!!!!", each_airport, each_airport.latitude, each_airport.longitude, count)
                     wx = get_data(each_airport.identifier)
                     if wx:
-                        airport_weather.append((each_airport, wx))
+                        airport_weather.append((each_airport, METAR(wx)))
                     count += 1
 
             elif step_thru == 'lat':
@@ -113,12 +113,12 @@ def get_corridor_airports(st, fin):
                     # print("LON-SUCCESS!!!!!", each_airport, each_airport.latitude, each_airport.longitude, count)
                     wx = get_data(each_airport.identifier)
                     if wx:
-                        airport_weather.append((each_airport, wx))
+                        airport_weather.append((each_airport, METAR(wx)))
                     count += 1
 
     wx = get_data(finish.identifier)
     if wx:
-        airport_weather.append((finish, wx))
+        airport_weather.append((finish, METAR(wx)))
     dup = len(airport_weather) - 1
     # print(dup)
     for i in range(dup, 0, -1):
