@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import Airfield, METAR
 from numpy import arange
 import requests
@@ -25,8 +25,6 @@ def get_corridor_airports(st, fin):
     startLON = start.longitude
     finishLAT = finish.latitude
     finishLON = finish.longitude
-    # print("startLAT", startLAT, "startLON", startLON, "finishLAT", finishLAT, "finishLON", finishLON)
-    # print("*********")
     if startLAT < finishLAT:
         x1 = startLAT
         x2 = finishLAT
@@ -54,8 +52,6 @@ def get_corridor_airports(st, fin):
                                                 latitude__lte=x2,
                                                 longitude__gte=y1,
                                                 longitude__lte=y2)
-    # print("selected_airports: ", *selected_airports, sep='\n')
-    # print(len(selected_airports))
     lat_diff = abs(startLAT - finishLAT)
     lon_diff = abs(startLON - finishLON)
     if lon_diff > lat_diff:
@@ -92,12 +88,10 @@ def get_corridor_airports(st, fin):
         for each_airport in selected_airports:
             if step_thru == 'lon':
                 if each_airport.latitude <= startLAT + 0.4 and each_airport.latitude >= startLAT - 0.4 and each_airport.longitude <= i and each_airport.longitude >= i - 0.1:
-                    # print("LAT = ", each_airport.latitude, "    LON = ", each_airport.longitude)
                     if startLAT > finishLAT:
                         startLAT -= ratio
                     else:
                         startLAT += ratio
-                    # print("LAT-SUCCESS!!!!!", each_airport, each_airport.latitude, each_airport.longitude, count)
                     wx = get_data(each_airport.identifier)
                     if wx:
                         airport_weather.append((each_airport, METAR(wx)))
@@ -105,12 +99,10 @@ def get_corridor_airports(st, fin):
 
             elif step_thru == 'lat':
                 if each_airport.longitude <= startLON + 0.4 and each_airport.longitude >= startLON - 0.4 and each_airport.latitude <= i and each_airport.latitude >= i - 0.1:
-                    # print("LAT = ", each_airport.latitude, "    LON = ", each_airport.longitude)
                     if startLON > finishLON:
                         startLON -= ratio
                     else:
                         startLON += ratio
-                    # print("LON-SUCCESS!!!!!", each_airport, each_airport.latitude, each_airport.longitude, count)
                     wx = get_data(each_airport.identifier)
                     if wx:
                         airport_weather.append((each_airport, METAR(wx)))
@@ -120,25 +112,30 @@ def get_corridor_airports(st, fin):
     if wx:
         airport_weather.append((finish, METAR(wx)))
     dup = len(airport_weather) - 1
-    # print(dup)
     for i in range(dup, 0, -1):
         if airport_weather[i] == airport_weather[i-1] or airport_weather[i] == airport_weather[i-2]:
             airport_weather.pop(i)
-            # print("GOT POPPED !!!!!!!")
-    # print(airport_weather, "WWWWWWWWWW")
     return airport_weather
 
 
 # this function gets the all airports in the whole flight path
 def legs(request):
+    weather_stations = []
     identifiers = request.GET.getlist('waypoint')
-    print(identifiers)
-    full_list = []
+
     for i in range(len(identifiers)):
         if (i + 1) != len(identifiers):
             weather_list = get_corridor_airports(identifiers[i], identifiers[i + 1])
-            full_list += weather_list
-    return render(request, 'clearskies_app/data.html', {'full_list': full_list})
+            weather_stations += weather_list
+
+    full_list = []
+    for item in weather_stations:
+        datapoint = {"identifier": item[0].identifier,
+                     "latitude": item[0].latitude,
+                     "longitude": item[0].longitude,
+                     "ceiling": item[1].ceiling}
+        full_list.append(datapoint)
+    return JsonResponse(full_list, safe=False)
 
 
 def get_data(AI):
@@ -153,8 +150,6 @@ def get_data(AI):
     end_position_of_data = text.find(find_end)
     if "No METAR found" in text[beg_position_of_data:end_position_of_data]:
         return None
-        # print("\n\n\n**********   GOT WEATHER   *************")
-        # print(text[beg_position_of_data:end_position_of_data])
     return text[beg_position_of_data:end_position_of_data]
 
 
