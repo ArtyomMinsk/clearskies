@@ -49,10 +49,16 @@ function plot_on_map(quickMarker){
     var res = quickMarker.split("-");
     qLatMarker = parseFloat(res[0])
     qLonMarker = -parseFloat(res[1])
+    var infoWindow = new google.maps.InfoWindow({
+      content: "Hello"
+    });
     var newMarker = new google.maps.Marker({
       position: new google.maps.LatLng(qLatMarker, qLonMarker),
       icon: 'http://maps.google.com/mapfiles/ms/icons/green.png',
       draggable: true,
       map: map,
-        })
+    });
+    newMarker.addListener('click', function() {
+      infoWindow.open(map, newMarker);
+    })
 }
