@@ -1,5 +1,3 @@
-
-
 // ============================== COOKIES ===================================
 // using jQuery
 function getCookie(name) {

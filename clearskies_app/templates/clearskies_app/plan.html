@@ -1,23 +1,53 @@
-{% extends 'clearskies_app/base.html' %}
+<!DOCTYPE html>
 {% load static %}
-{% block title %}Welcome to ClearSkies{% endblock %}
-{% block content %}
-<form method="post">
-{% csrf_token %}
-  <ul class="ui-widget" id="legs">
-    <li><input type="text" class="tags"></li>
-  </ul>
-  <!-- <input type="submit"> -->
-  <ul>
-    <li>
-      <button id="addField">
-        <img src="{% static 'img/plus_symbol.svg' %}">
-        <span>ADD WAYPOINT</span>
-      </button>
-    </li>
-    <li><input type="submit" class="submit" value="WHAT'S THE CEILING?"></li>
-  </ul>
-</form>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBJRBQ0vUyLij18oHW8A_mwdsJbyYnlDUk"
+            type="text/javascript"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 
-<script src="{% static 'js/planui.js' %}"></script>
+</head>
+<body>
+
+<div class="wrapper">
+  <header class="header">This is a fixed width....or we can delete it....    :)</header>
+  <section class="content">
+    <div class="columns">
+      <main class="main" id="map" >Content: Flexible width</main>
+      <aside class="sidebar-first"><br>
+          <p id="enterAI">
+              Enter Airport Identifier:
+          </p>
+          <form method="post">
+              {% csrf_token %}
+            <div class="ui-widget" id="leg_boxes">
+              <input type="text" name="waypoint" class="get_only_one" style="text-transform:uppercase" autofocus /><br>
+            </div>
+            <br><input type="button" id="get_all" value="clickMe">
+          </form>
+
+
+      </aside>
+      <aside class="sidebar-second"><em>Cloud Bases enroute</em>
+          <ul id="cber">
+              <li>KSOP  -  SCT090</li>
+              <li>KCLT  -  SCT084</li>
+              <li>KGSP  -  BKN011</li>
+              <li>KATL  -  OVC007</li>
+              <li>KBHM  -  OVC005</li>
+          </ul>
+      </aside>
+    </div>
+  </section>
+  <footer class="footer">This is a fixed width too....   </footer>
+</div>
+
+</body>
+
+{% block scripts %}
+<script src="{% static 'js/csrf.js' %}"></script>
+<script src="{% static 'js/tab_enter_listen.js' %}"></script>
+<script src="{% static 'js/ajax_call_to_legs.js' %}"></script>
+<script src="{% static 'js/load_init_map.js' %}"></script>
 {% endblock %}

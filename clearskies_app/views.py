@@ -6,7 +6,7 @@ import requests
 
 
 def home(request):
-    return render(request, 'clearskies_app/index.html', context=None)
+    return render(request, 'clearskies_app/plan.html', context=None)
 
 
 def plan(request):
@@ -154,13 +154,16 @@ def get_data(AI):
 
 
 # Delete this when done testing
-def coord(request):
-    if request.method == "POST":
-        temp = Airfield.objects.get(identifier=request.POST['airport'])
-        testLAT = temp.latitude
-        testLON = temp.longitude
+def instant_plot(request):
+    if request.method == "GET":
+        print("IT IS A GET REQUEST!!!---------------------->", request.GET)
+        temp = Airfield.objects.get(identifier=request.GET['airportID'])
+        plotLAT = temp.latitude
+        plotLON = temp.longitude
     else:
-        testLAT = ''
-        testLON = ''
-    context = { 'testLAT': testLAT, 'testLON': testLON }
-    return render(request, 'clearskies_app/get_coord.html', context)
+        plotLAT = ''
+        plotLON = ''
+    # context = {'lat': plotLAT, 'lon': plotLON}
+    context = [plotLAT, plotLON]
+    # return it to HTML - so it goes on G Map API instantaneous !!!!!!!!
+    return HttpResponse(context)
