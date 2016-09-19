@@ -50,6 +50,7 @@ $("#leg_boxes").on('keydown', 'input,select', function(e) {
 
 function plot_on_map(quickMarker){
     var res = quickMarker.split("-");
+    console.log(quickMarker)
     qLatMarker = parseFloat(res[0])
     qLonMarker = -parseFloat(res[1])
     var newMarker = new google.maps.Marker({

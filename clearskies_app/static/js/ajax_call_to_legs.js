@@ -6,17 +6,19 @@ $("#get_all").on('click', function() {
     })
 
 mydata={'waypoint': wypts}
-$.ajax({type: "POST",
-        url: '/get_all/',
+console.log(mydata);
+$.ajax({type: "GET",
+        url: '/fp/',
         data : mydata,
         traditional: true,
     }).done(function(weatherStations) {
-
+            console.log(weatherStations);
             weatherStations.forEach(function(weatherStation) {
+              plot_on_map(weatherStation.latitude + "" + weatherStation.longitude)
                 console.log('identifier:', weatherStation.identifier)
-                console.log('lat:', weatherStation.lat)
-                console.log('lon:', weatherStation.lon)
-                console.log('cloud_bases:', weatherStation.cloud_bases)
+                console.log('lat:', weatherStation.latitude)
+                console.log('lon:', weatherStation.longitude)
+                console.log('cloud_bases:', weatherStation.ceiling)
             })
         })
 });
