@@ -131,6 +131,9 @@ def legs(request):
     full_list = []
     for item in weather_stations:
         datapoint = {"identifier": item[0].identifier,
+                     "name": item[0].name,
+                     "city": item[0].city,
+                     "state": item[0].state,
                      "latitude": item[0].latitude,
                      "longitude": item[0].longitude,
                      "ceiling": item[1].ceiling}
