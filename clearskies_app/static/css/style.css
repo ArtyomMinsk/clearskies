@@ -1,115 +1,39 @@
-@import 'https://fonts.googleapis.com/css?family=Cutive+Mono|Inconsolata|Yellowtail';
-
-html {
-  height: 100%;
-  width: 100%;
-  background-image: linear-gradient(skyblue, azure);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.primary-content {
-  padding: 5%;
-  max-width: 80%;
-  background-image: linear-gradient(azure 75%, white);
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin: 0 auto;
-  margin-top: 30px;
-  border-radius: 7px;
-  box-shadow: 2px 2px 2px cadetblue;
-}
-
-#greeting {
-  padding: 80px 0;
-  text-align: center;
-  color: darkslategrey;
-  text-shadow: 2px 2px 2px cadetblue;
-  font-size: 3rem;
-  line-height: 0.5;
+body{
   margin: 0;
 }
-
-#greeting h1 {
-  font-family: 'Yellowtail', sans-serif;
-  font-weight: normal;
-  margin: 0;
+.wrapper{
+  min-height: 100vh;
+  background: #ccc;
+  display: flex;
+  flex-direction: column;
 }
-
-#greeting h4 {
-  font-family: 'Cutive Mono', sans-serif;
-  letter-spacing: -0.1rem;
-}
-
-img {
-  max-height: 100%;
-  /*max-width: 100%;*/
-}
-
-ul {
-  list-style: none;
-  margin: auto;
-}
-
-ul li {
-  padding: 5px 0;
-}
-
-.ui-autocomplete {
-  max-height: 200px;
-  overflow-y: auto;
-  /* prevent horizontal scrollbar */
-  overflow-x: hidden;
-}
-
-.remove {
-  height: 20px;
-  width: 20px;
-  background-color: transparent;
-  border: none;
-  margin: auto;
-}
-
-#addField {
+.header, .footer{
   height: 50px;
-  background-color: transparent;
-  border: none;
-  font-size: 20px;
-  font-weight: 200;
-  margin: 5px 0;
+  background: #666;
+  color: #fff;
 }
-
-#addField img {
-  margin: -13px 0;
-  padding: 0;
-
+.content {
+  display: flex;
+  flex: 1;
+  background: #999;
+  color: #000;
 }
-
-button:focus {
-  outline: none;
+.columns{
+  display: flex;
+  flex:1;
 }
-
-.submit {
-  border: none;
-  background-color: darkslategrey;
-  color: azure;
-  font-size: 20px;
-  font-weight: 100;
-  border: 2px solid cadetblue;
+.main{
+  flex: 1;
+  order: 2;
+  background: #eee;
 }
-
-#trip {
-    font-size:24pt;
+.sidebar-first{
+  width: 20%;
+  background: #ccc;
+  order: 1;
 }
-
-#departure{
-    font-size:16pt;
-    width: 75px;
-    border-radius: 4px;
-}
-
-#arrival_leg{
-    font-size:16pt;
-    width: 75px;
-    border-radius: 4px;
+.sidebar-second{
+  width: 20%;
+  order: 3;
+  background: #ddd;
 }
