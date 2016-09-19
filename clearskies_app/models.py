@@ -58,9 +58,9 @@ class METAR:
         self.ceiling.append(returnstring)
 
     def parse_number(self, string):
-        while string[0] == '0':
+        while string and string[0] == '0':
             string = string[1:]
-        return int(string)
+        return string
 
     def __eq__(self, other):
         return self.identifier == other.identifier
