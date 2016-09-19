@@ -64,9 +64,3 @@ class METAR:
 
     def __eq__(self, other):
         return self.identifier == other.identifier
-
-    #
-    # def parse_windspeed(self, item):
-    #     self.windbearing = item[:3]
-    #     speedstring = item[3:]
-    #     self.windspeed = self.parse_number(speedstring[:2])

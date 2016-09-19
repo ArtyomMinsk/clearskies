@@ -56,3 +56,4 @@ function plot_on_map(quickMarker){
       map: map
         })
 }
+ 

@@ -3,7 +3,9 @@ from . import views
 
 app_name = 'clearskies_app'
 urlpatterns = [
-    url(r'^plan/$', views.home, name="plan"),
-    url(r'^instant_plot/$', views.instant_plot, name="plot"),
-    url(r'^fp/', views.legs, name="flightplan"),
+    # url(r'^Tindex/$', views.Tindex, name="Tindex"),
+    url(r'^get_coord/$', views.coord, name="coord"),
+    # url(r'^plan/$', views.plan, name="plan"),
+    url(r'^test/$', views.legs, name="legs"),
+    url(r'', views.home, name="home"),
 ]
