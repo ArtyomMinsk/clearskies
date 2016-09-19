@@ -1,5 +1,8 @@
+@import 'https://fonts.googleapis.com/css?family=Changa';
+
 body{
   margin: 0;
+  font-family: sans-serif;
 }
 .wrapper{
   min-height: 100vh;
@@ -11,6 +14,13 @@ body{
   height: 50px;
   background: #666;
   color: #fff;
+  font-family: 'Changa', sans-serif;
+  text-align: center;
+}
+
+.header h2 {
+  margin: auto;
+  vertical-align: middle;
 }
 .content {
   display: flex;
@@ -31,9 +41,11 @@ body{
   width: 20%;
   background: #ccc;
   order: 1;
+  padding: 2.5%;
 }
 .sidebar-second{
   width: 20%;
   order: 3;
   background: #ddd;
+  padding: 2.5%;
 }
