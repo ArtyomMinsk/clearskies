@@ -14,7 +14,7 @@ def plan(request):
     return render(request, 'clearskies_app/plan.html', {'airfields': airfields})
 
 
-def get_corridor_airports(st, fin):
+def get_corridor_airports(st, fin, width):
     airport_weather = []
     start = Airfield.objects.get(identifier=st)
     wx = get_data(start.identifier)
@@ -87,7 +87,7 @@ def get_corridor_airports(st, fin):
     for i in arange(startP, finishP + extend, increment):
         for each_airport in selected_airports:
             if step_thru == 'lon':
-                if each_airport.latitude <= startLAT + 0.4 and each_airport.latitude >= startLAT - 0.4 and each_airport.longitude <= i and each_airport.longitude >= i - 0.1:
+                if each_airport.latitude <= startLAT + width and each_airport.latitude >= startLAT - width and each_airport.longitude <= i and each_airport.longitude >= i - 0.1:
                     if startLAT > finishLAT:
                         startLAT -= ratio
                     else:
@@ -98,7 +98,7 @@ def get_corridor_airports(st, fin):
                     count += 1
 
             elif step_thru == 'lat':
-                if each_airport.longitude <= startLON + 0.4 and each_airport.longitude >= startLON - 0.4 and each_airport.latitude <= i and each_airport.latitude >= i - 0.1:
+                if each_airport.longitude <= startLON + width and each_airport.longitude >= startLON - width and each_airport.latitude <= i and each_airport.latitude >= i - 0.1:
                     if startLON > finishLON:
                         startLON -= ratio
                     else:
@@ -122,10 +122,12 @@ def get_corridor_airports(st, fin):
 def legs(request):
     weather_stations = []
     identifiers = request.GET.getlist('waypoint')
+    corr_width = request.GET.get('corridor_width')
+    print('corr_width: ', corr_width, type(corr_width))
 
     for i in range(len(identifiers)):
         if (i + 1) != len(identifiers):
-            weather_list = get_corridor_airports(identifiers[i], identifiers[i + 1])
+            weather_list = get_corridor_airports(identifiers[i], identifiers[i + 1], float(corr_width))
             weather_stations += weather_list
 
     full_list = []
