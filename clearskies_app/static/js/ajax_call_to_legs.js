@@ -2,7 +2,7 @@ wypts = []
 $("#get_all").on('click', function() {
     $.each($(".get_only_one"),function(i,e)
         {if(e.value > "")
-            {wypts.push("K" + e.value)}
+            {wypts.push("K" + e.value.toUpperCase())}
     })
 
 mydata={'waypoint': wypts}
