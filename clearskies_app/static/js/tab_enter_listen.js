@@ -32,15 +32,12 @@ $("#leg_boxes").on('keydown', 'input,select', function(e) {
         // ============================================================
         $.each($(".get_only_one"),function(i,e)
             {if(e.value > ""){
-            console.log(e.value)
             airportID = "K" + e.value
             $.ajax({type: "GET",
                     url: '/instant_plot/',
                     data : {'airportID': airportID},
                     traditional: true,
                 }).done(function(quickMarker) {
-                    console.log("YOU MADE IT TO A RETURN FROM POST")
-                    console.log(quickMarker, "SSSSSSSSSSS")
                     plot_on_map(quickMarker)
                 })
             }
@@ -50,7 +47,6 @@ $("#leg_boxes").on('keydown', 'input,select', function(e) {
 
 function plot_on_map(quickMarker){
     var res = quickMarker.split("-");
-    console.log(quickMarker)
     qLatMarker = parseFloat(res[0])
     qLonMarker = -parseFloat(res[1])
     var newMarker = new google.maps.Marker({
