@@ -49,3 +49,8 @@ body{
   background: #ddd;
   padding: 2.5%;
 }
+
+.labels {
+  font-size: 10px;
+  text-align: center;
+}

@@ -53,6 +53,6 @@ function plot_on_map(quickMarker){
       position: new google.maps.LatLng(qLatMarker, qLonMarker),
       icon: 'http://maps.google.com/mapfiles/ms/icons/green.png',
       draggable: true,
-      map: map
+      map: map,
         })
 }
