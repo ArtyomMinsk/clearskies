@@ -86,32 +86,31 @@ def get_corridor_airports(st, fin):
         finishP = finishLAT
 
     for i in arange(startP, finishP + extend, increment):
-        # print(i, "<====== THIS IS I")
-        if step_thru == 'lon':
-            for each_airport in selected_airports:
+        print(i, "THIS IS I")
+        for each_airport in selected_airports:
+            if step_thru == 'lon':
                 if each_airport.latitude <= startLAT + 0.4 and each_airport.latitude >= startLAT - 0.4 and each_airport.longitude <= i and each_airport.longitude >= i - 0.1:
                     wx = get_data(each_airport.identifier)
                     if wx:
                         airport_weather.append((each_airport, METAR(wx)))
 
-            if startLAT > finishLAT:
-                startLAT -= ratio
-            else:
-                startLAT += ratio
-            # print('startLAT', startLAT)
+                    if startLAT > finishLAT:
+                        startLAT -= ratio
+                    else:
+                        startLAT += ratio
+                    print('startLAT', startLAT)
 
-        elif step_thru == 'lat':
-            for each_airport in selected_airports:
-                # print('each_airport.longitude', each_airport.longitude, 'startLON', startLON, startLON+0.4)
+            elif step_thru == 'lat':
                 if each_airport.longitude <= startLON + 0.4 and each_airport.longitude >= startLON - 0.4 and each_airport.latitude <= i and each_airport.latitude >= i - 0.1:
                     wx = get_data(each_airport.identifier)
                     if wx:
                         airport_weather.append((each_airport, METAR(wx)))
-            # print("now I'm at the incr startLON - ratio")
-            if startLON > finishLON:
-                startLON -= ratio
-            else:
-                startLON += ratio
+
+                    if startLON > finishLON:
+                        startLON -= ratio
+                    else:
+                        startLON += ratio
+                    print('startLON', startLON)
 
     wx = get_data(finish.identifier)
     if wx:
