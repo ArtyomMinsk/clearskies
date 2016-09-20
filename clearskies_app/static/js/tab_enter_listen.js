@@ -16,6 +16,12 @@ $("#leg_boxes").on('keydown', 'input,select', function(e) {
 
     if (keyCode == 9) {
         console.log("you tabbed !!!!")
+        console.log(this.value);
+        if (!is_valid_airfield('K' + this.value.toUpperCase())) {
+          this.value = ''
+          return
+        }
+        //validate last input (or all inputs), if it isn't valid, return, don't create a new box.
         var textbox = document.createElement('input');
         var linebreak = document.createElement("br");
         textbox.type = "text"
@@ -76,4 +82,17 @@ function plot_on_map(quickMarker){
     newMarker.addListener('click', function() {
       infoWindow.open(map, newMarker);
     })
+}
+
+var airfields = [];
+$.ajax({type: "GET",
+        url: '/airfields/',
+        traditional: true,
+    }).done(function(response) {
+        airfields = response
+    })
+
+
+function is_valid_airfield(identifier) {
+  return airfields.indexOf(identifier) != -1
 }
