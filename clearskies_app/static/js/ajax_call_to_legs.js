@@ -1,6 +1,7 @@
-wypts = []
+//wypts = []
 document.getElementById("corridor_width").defaultValue = 0.2;
 $("#get_all").on('click', function() {
+    var wypts = []
     $.each($(".get_only_one"),function(i,e)
         {if(e.value > "")
             {wypts.push("K" + e.value.toUpperCase())}
