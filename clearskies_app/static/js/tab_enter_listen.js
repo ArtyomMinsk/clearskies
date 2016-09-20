@@ -9,6 +9,7 @@ $(document).on('keypress', 'input,select', function(e) {
     }
 });
 
+var allMarkers = [];
 $("#leg_boxes").on('keydown', 'input,select', function(e) {
     var keyCode = e.keyCode || e.which;
     console.log("you event !!!!")
@@ -59,6 +60,19 @@ function plot_on_map(quickMarker){
       draggable: true,
       map: map,
     });
+
+    allMarkers.push(newMarker)
+
+    map.panTo(newMarker.getPosition());
+
+    if(allMarkers.length > 1){
+        var bounds = new google.maps.LatLngBounds();
+        for (var i = 0; i < allMarkers.length; i++) {
+         bounds.extend(allMarkers[i].getPosition());
+            }
+        map.fitBounds(bounds);
+    }
+
     newMarker.addListener('click', function() {
       infoWindow.open(map, newMarker);
     })
