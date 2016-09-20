@@ -3,6 +3,8 @@ from django.http import HttpResponse, JsonResponse
 from .models import Airfield, METAR
 from numpy import arange
 import requests
+from django.views.decorators.cache import cache_page
+import time
 
 
 def home(request):
@@ -123,6 +125,7 @@ def get_corridor_airports(st, fin, width):
 
 
 # this function gets the all airports in the whole flight path
+@cache_page(60 * 2)
 def legs(request):
     weather_stations = []
     identifiers = request.GET.getlist('waypoint')
@@ -131,6 +134,7 @@ def legs(request):
 
     for i in range(len(identifiers)):
         if (i + 1) != len(identifiers):
+            start_time = time.time()
             weather_list = get_corridor_airports(identifiers[i], identifiers[i + 1], float(corr_width))
             weather_stations += weather_list
 
@@ -144,6 +148,9 @@ def legs(request):
                      "longitude": item[0].longitude,
                      "ceiling": item[1].ceiling}
         full_list.append(datapoint)
+
+
+    print("--- %s seconds ---" % (time.time() - start_time))
     return JsonResponse(full_list, safe=False)
 
 
