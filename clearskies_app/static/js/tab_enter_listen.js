@@ -46,13 +46,20 @@ $("#leg_boxes").on('keydown', 'input,select', function(e) {
 });
 
 function plot_on_map(quickMarker){
-    var res = quickMarker.split("-");
-    qLatMarker = parseFloat(res[0])
-    qLonMarker = -parseFloat(res[1])
+    // var res = quickMarker.split("-");
+    // qLatMarker = parseFloat(res[0])
+    // qLonMarker = -parseFloat(res[1])
+    console.log(typeof(quickMarker))
+    var infoWindow = new google.maps.InfoWindow({
+      content: '' + quickMarker.name
+    });
     var newMarker = new google.maps.Marker({
-      position: new google.maps.LatLng(qLatMarker, qLonMarker),
+      position: new google.maps.LatLng(quickMarker.latitude, quickMarker.longitude),
       icon: 'http://maps.google.com/mapfiles/ms/icons/green.png',
       draggable: true,
-      map: map
-        })
+      map: map,
+    });
+    newMarker.addListener('click', function() {
+      infoWindow.open(map, newMarker);
+    })
 }
