@@ -15,13 +15,15 @@ $.ajax({type: "GET",
         traditional: true,
     }).done(function(weatherStations) {
             console.log(weatherStations);
+            $('#cber').children().remove();
+            console.log('Removed #cber children')
             weatherStations.forEach(function(weatherStation) {
                 var $item = $('<li></li>')
                 var $ceiling = $('<ul></ul>')
-                console.log('identifier:', weatherStation.identifier);
-                console.log('lat:', weatherStation.latitude);
-                console.log('lon:', weatherStation.longitude);
-                console.log('cloud_bases:', weatherStation.ceiling);
+                // console.log('identifier:', weatherStation.identifier);
+                // console.log('lat:', weatherStation.latitude);
+                // console.log('lon:', weatherStation.longitude);
+                // console.log('cloud_bases:', weatherStation.ceiling);
                 colored_markers_on_map(weatherStation);
                 $('#cber').append($item);
                 $item.append(weatherStation.identifier)
@@ -35,14 +37,10 @@ $.ajax({type: "GET",
 
 function colored_markers_on_map(weather){
     reports = weather.ceiling.length
-    console.log('reports', reports)
     count = 0
     while (count < reports) {
-        console.log('count', count)
         wreport = weather.ceiling[count]
-        console.log('wreport', wreport)
         layer = wreport.split(" ", 4)
-        console.log("layer0", layer[0])
         if (layer[0] == "Overcast"){ var lowestClouds = parseInt(layer[2])
             count = reports}
         if (layer[0] == "Broken"){ var lowestClouds = parseInt(layer[3])
@@ -62,7 +60,7 @@ function colored_markers_on_map(weather){
         if (lowestClouds > 4900 && lowestClouds < 10000){mrkColor = "http://www.googlemapsmarkers.com/v1/00e64d/"}
         if (lowestClouds == 'CLR') {mrkColor = "http://www.googlemapsmarkers.com/v1/66d9ff"}
         var infoWindow = new google.maps.InfoWindow({
-          content: '' + weather.name
+          content: weather.identifier + ': ' + weather.name + '<br>Latitude: ' + weather.latitude + '<br>Longtitude: ' + weather.longitude
         });
         var newMarker = new google.maps.Marker({
           position: new google.maps.LatLng(weather.latitude, weather.longitude),

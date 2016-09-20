@@ -12,11 +12,11 @@ $(document).on('keypress', 'input,select', function(e) {
 var allMarkers = [];
 $("#leg_boxes").on('keydown', 'input,select', function(e) {
     var keyCode = e.keyCode || e.which;
-    console.log("you event !!!!")
+    // console.log("you event !!!!")
 
     if (keyCode == 9) {
-        console.log("you tabbed !!!!")
-        console.log(this.value);
+        // console.log("you tabbed !!!!")
+        // console.log(this.value);
         if (!is_valid_airfield('K' + this.value.toUpperCase())) {
           this.value = ''
           return
@@ -37,8 +37,9 @@ $("#leg_boxes").on('keydown', 'input,select', function(e) {
         document.getElementById('leg_boxes').appendChild(linebreak)
 
         // ============================================================
-        $.each($(".get_only_one"),function(i,e)
-            {if(e.value > ""){
+        var emptycells = 0;
+        $.each($(".get_only_one"),function(i,e) {
+          if(e.value > "") {
             airportID = "K" + e.value.toUpperCase()
             $.ajax({type: "GET",
                     url: '/instant_plot/',
@@ -47,7 +48,13 @@ $("#leg_boxes").on('keydown', 'input,select', function(e) {
                 }).done(function(quickMarker) {
                     plot_on_map(quickMarker)
                 })
+            } else {
+              emptycells++
             }
+          if (emptycells > 1 && e.value == "") {
+            e.nextSibling.remove();
+            e.remove();
+          }
         })
     }
 });
@@ -57,13 +64,16 @@ function plot_on_map(quickMarker){
     // qLatMarker = parseFloat(res[0])
     // qLonMarker = -parseFloat(res[1])
     var infoWindow = new google.maps.InfoWindow({
-      content: '' + quickMarker.name
+      content: quickMarker.identifier + ': ' + quickMarker.name + '<br>Latitude: ' + quickMarker.latitude + '<br>Longtitude: ' + quickMarker.longitude
     });
     var newMarker = new google.maps.Marker({
       position: new google.maps.LatLng(quickMarker.latitude, quickMarker.longitude),
       icon: 'http://maps.google.com/mapfiles/ms/icons/green.png',
       draggable: true,
       map: map,
+    });
+    newMarker.addListener('click', function() {
+      infoWindow.open(map, newMarker);
     });
 
     allMarkers.push(newMarker)
@@ -78,9 +88,7 @@ function plot_on_map(quickMarker){
         map.fitBounds(bounds);
     }
 
-    newMarker.addListener('click', function() {
-      infoWindow.open(map, newMarker);
-    })
+
 }
 
 var airfields = [];
