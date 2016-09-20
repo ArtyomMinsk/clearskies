@@ -167,12 +167,12 @@ def instant_plot(request):
     if request.method == "GET":
         print("IT IS A GET REQUEST!!!---------------------->", request.GET)
         temp = Airfield.objects.get(identifier=request.GET['airportID'])
-        plotLAT = temp.latitude
-        plotLON = temp.longitude
+        # plotLAT = temp.latitude
+        # plotLON = temp.longitude
+        airfield = {'latitude': temp.latitude, 'longitude': temp.longitude,
+                    'name': temp.name, 'city': temp.city, 'state': temp.state}
     else:
-        plotLAT = ''
-        plotLON = ''
+        airfield = {}
     # context = {'lat': plotLAT, 'lon': plotLON}
-    context = [plotLAT, plotLON]
     # return it to HTML - so it goes on G Map API instantaneous !!!!!!!!
-    return HttpResponse(context)
+    return JsonResponse(airfield)

@@ -17,7 +17,7 @@ $.ajax({type: "GET",
             weatherStations.forEach(function(weatherStation) {
                 var $item = $('<li></li>')
                 var $ceiling = $('<ul></ul>')
-                plot_on_map(weatherStation.latitude + "" + weatherStation.longitude);
+                plot_on_map(weatherStation);
                 console.log('identifier:', weatherStation.identifier);
                 console.log('lat:', weatherStation.latitude);
                 console.log('lon:', weatherStation.longitude);
