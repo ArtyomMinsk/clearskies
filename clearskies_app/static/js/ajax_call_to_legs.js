@@ -1,6 +1,7 @@
-wypts = []
+//wypts = []
 document.getElementById("corridor_width").defaultValue = 0.2;
 $("#get_all").on('click', function() {
+    var wypts = []
     $.each($(".get_only_one"),function(i,e)
         {if(e.value > "")
             {wypts.push("K" + e.value.toUpperCase())}
@@ -60,12 +61,19 @@ function colored_markers_on_map(weather){
         if (lowestClouds > 2500 && lowestClouds < 5000){mrkColor = "http://maps.google.com/mapfiles/ms/icons/green.png"}
         if (lowestClouds > 4900 && lowestClouds < 10000){mrkColor = "http://www.googlemapsmarkers.com/v1/00e64d/"}
         if (lowestClouds == 'CLR') {mrkColor = "http://www.googlemapsmarkers.com/v1/66d9ff"}
+        var infoWindow = new google.maps.InfoWindow({
+          content: '' + weather.name
+        });
         var newMarker = new google.maps.Marker({
           position: new google.maps.LatLng(weather.latitude, weather.longitude),
           icon: mrkColor,
           draggable: true,
-          map: map
-        })
+          map: map,
+
+        });
+        newMarker.addListener('click', function() {
+          infoWindow.open(map, newMarker);
+        });
         count++;
     }
 }

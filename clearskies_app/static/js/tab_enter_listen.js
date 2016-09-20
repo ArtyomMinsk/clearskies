@@ -9,12 +9,19 @@ $(document).on('keypress', 'input,select', function(e) {
     }
 });
 
+var allMarkers = [];
 $("#leg_boxes").on('keydown', 'input,select', function(e) {
     var keyCode = e.keyCode || e.which;
     console.log("you event !!!!")
 
     if (keyCode == 9) {
         console.log("you tabbed !!!!")
+        console.log(this.value);
+        if (!is_valid_airfield('K' + this.value.toUpperCase())) {
+          this.value = ''
+          return
+        }
+        //validate last input (or all inputs), if it isn't valid, return, don't create a new box.
         var textbox = document.createElement('input');
         var linebreak = document.createElement("br");
         textbox.type = "text"
@@ -49,7 +56,6 @@ function plot_on_map(quickMarker){
     // var res = quickMarker.split("-");
     // qLatMarker = parseFloat(res[0])
     // qLonMarker = -parseFloat(res[1])
-    console.log(typeof(quickMarker))
     var infoWindow = new google.maps.InfoWindow({
       content: '' + quickMarker.name
     });
@@ -59,7 +65,33 @@ function plot_on_map(quickMarker){
       draggable: true,
       map: map,
     });
+
+    allMarkers.push(newMarker)
+
+    map.panTo(newMarker.getPosition());
+
+    if(allMarkers.length > 1){
+        var bounds = new google.maps.LatLngBounds();
+        for (var i = 0; i < allMarkers.length; i++) {
+         bounds.extend(allMarkers[i].getPosition());
+            }
+        map.fitBounds(bounds);
+    }
+
     newMarker.addListener('click', function() {
       infoWindow.open(map, newMarker);
     })
+}
+
+var airfields = [];
+$.ajax({type: "GET",
+        url: '/airfields/',
+        traditional: true,
+    }).done(function(response) {
+        airfields = response
+    })
+
+
+function is_valid_airfield(identifier) {
+  return airfields.indexOf(identifier) != -1
 }

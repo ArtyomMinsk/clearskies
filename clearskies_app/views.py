@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from .models import Airfield, METAR
 from numpy import arange
@@ -172,14 +172,22 @@ def get_data(AI):
 # Delete this when done testing
 def instant_plot(request):
     if request.method == "GET":
-        print("IT IS A GET REQUEST!!!---------------------->", request.GET)
-        temp = Airfield.objects.get(identifier=request.GET['airportID'])
+        # print("IT IS A GET REQUEST!!!---------------------->", request.GET)
+        # temp = Airfield.objects.get(identifier=request.GET['airportID'])
+        temp = get_object_or_404(Airfield, identifier=request.GET['airportID'])
         # plotLAT = temp.latitude
         # plotLON = temp.longitude
         airfield = {'latitude': temp.latitude, 'longitude': temp.longitude,
-                    'name': temp.name, 'city': temp.city, 'state': temp.state}
+                    'name': temp.name, 'city': temp.city, 'state': temp.state,
+                    'identifier': temp.identifier}
     else:
         airfield = {}
     # context = {'lat': plotLAT, 'lon': plotLON}
     # return it to HTML - so it goes on G Map API instantaneous !!!!!!!!
     return JsonResponse(airfield)
+
+
+def all_airfields(request):
+    airfields = Airfield.objects.all()
+    identifiers = [airfield.identifier for airfield in airfields]
+    return JsonResponse(identifiers, safe=False)
