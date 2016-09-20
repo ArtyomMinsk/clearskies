@@ -49,7 +49,6 @@ function plot_on_map(quickMarker){
     // var res = quickMarker.split("-");
     // qLatMarker = parseFloat(res[0])
     // qLonMarker = -parseFloat(res[1])
-    console.log(typeof(quickMarker))
     var infoWindow = new google.maps.InfoWindow({
       content: '' + quickMarker.name
     });
