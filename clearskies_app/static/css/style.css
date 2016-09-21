@@ -13,7 +13,7 @@ body{
 .header, .footer{
   height: 50px;
   background: #666;
-  color: #fff;
+  color: ghostwhite;
   font-family: 'Changa', sans-serif;
   text-align: center;
 }
@@ -39,14 +39,14 @@ body{
 }
 .sidebar-first{
   width: 20%;
-  background: #ccc;
+  background: ghostwhite;
   order: 1;
   padding: 2.5%;
 }
 .sidebar-second{
   width: 20%;
   order: 3;
-  background: #ddd;
+  background: ghostwhite;
   padding: 2.5%;
   font-size: 10px;
 }
