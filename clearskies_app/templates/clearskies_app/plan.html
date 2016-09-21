@@ -39,7 +39,14 @@
       </aside>
     </div>
   </section>
-  <footer class="footer"></footer>
+  <footer class="footer">
+    <p id="helpMe">helpMe</p>
+    <div id="tooltip"><strong>Hints</strong><br>
+        Type your departure airport,
+        followed by any changes in direction (waypoints)<br>
+        to your ultimate destination<br>
+        [TAB] to create new waypoints</div>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+  </footer>
 </div>
 </body>
 
@@ -48,4 +55,5 @@
 <script src="{% static 'js/tab_enter_listen.js' %}"></script>
 <script src="{% static 'js/ajax_call_to_legs.js' %}"></script>
 <script src="{% static 'js/load_init_map.js' %}"></script>
+<script src="{% static 'js/hover_info.js' %}"></script>
 {% endblock %}
