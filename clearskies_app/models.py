@@ -23,7 +23,7 @@ class Airfield(models.Model):
 
 class METAR:
     def __init__(self, string):
-        abbrevs = ['CLR', 'OVC', 'SCT', 'BKN', 'FEW']
+        abbrevs = ['CLR', 'OVC', 'SCT', 'BKN', 'FEW', 'SKC']
         x = string.split(' ')
         self.identifier = x[0]
         self.ceiling = []
@@ -37,21 +37,21 @@ class METAR:
 
     def parse_ceiling(self, item):
         returnstring = ''
-        if item[:3] == 'CLR':
+        if item[:3] == 'CLR' or item[:3] == 'SKC':
             returnstring += 'Clear sky'
-        if item[:3] == 'BKN':
+        if item[:3] == 'BKN' and len(item) >= 6:
             returnstring += 'Broken clouds at '
             returnstring += str(self.parse_number(item[3:]))
             returnstring += '00 feet AGL'
-        if item[:3] == 'SCT':
+        if item[:3] == 'SCT' and len(item) >= 6:
             returnstring += 'Scattered clouds at '
             returnstring += str(self.parse_number(item[3:]))
             returnstring += '00 feet AGL'
-        if item[:3] == 'OVC':
+        if item[:3] == 'OVC' and len(item) >= 6:
             returnstring += 'Overcast at '
             returnstring += str(self.parse_number(item[3:]))
             returnstring += '00 feet AGL'
-        if item[:3] == 'FEW':
+        if item[:3] == 'FEW' and len(item) >= 6:
             returnstring += 'Few clouds at '
             returnstring += str(self.parse_number(item[3:]))
             returnstring += '00 feet AGL'

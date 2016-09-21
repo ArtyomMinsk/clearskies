@@ -2,7 +2,7 @@
 
 body{
   margin: 0;
-  font-family: sans-serif;
+  font-family: 'Changa';
 }
 .wrapper{
   min-height: 100vh;
@@ -60,4 +60,15 @@ body{
 
 #corridor_width {
     font-size: 18;
+}
+
+.button {
+  background-color: green;
+  color: white;
+  border-radius: 5px;
+  font-family: 'Changa';
+}
+
+#start_over {
+  background-color: red;
 }
