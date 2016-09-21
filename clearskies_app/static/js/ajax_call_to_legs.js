@@ -1,6 +1,8 @@
 //wypts = []
 document.getElementById("corridor_width").defaultValue = 0.2;
 $("#get_all").on('click', function() {
+    $('.sidebar-first').hide();
+    google.maps.event.trigger(map, 'resize');
     var wypts = []
     $.each($(".get_only_one"),function(i,e)
         {if(e.value > "")
@@ -73,5 +75,12 @@ function colored_markers_on_map(weather){
           infoWindow.open(map, newMarker);
         });
         count++;
+    }
+    if(allMarkers.length > 1){
+        var bounds = new google.maps.LatLngBounds();
+        for (var i = 0; i < allMarkers.length; i++) {
+         bounds.extend(allMarkers[i].getPosition());
+            }
+        map.fitBounds(bounds);
     }
 }
