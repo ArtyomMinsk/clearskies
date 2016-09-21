@@ -29,7 +29,7 @@ $("#leg_boxes").on('keydown', 'input,select', function(e) {
         textbox.placeholder = "Enter next waypoint"
         //textbox.attr("class","get_only_one")
         var att = document.createAttribute("class");       // Create a "class" attribute
-        att.value = "get_only_one";                           // Set the value of the class attribute
+        att.value = "get_only_one userinput";                           // Set the value of the class attribute
         textbox.setAttributeNode(att);
 
         textbox.style = "text-transform:uppercase"

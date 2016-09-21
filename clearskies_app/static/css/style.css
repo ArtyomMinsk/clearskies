@@ -62,13 +62,25 @@ body{
     font-size: 18;
 }
 
+input[type=number]::-webkit-inner-spin-button {
+    opacity: 1;
+    text-align: center;
+}
+
 .button {
   background-color: green;
   color: white;
   border-radius: 5px;
   font-family: 'Changa';
+  width: 100px;
 }
 
 #start_over {
   background-color: red;
+}
+
+.userinput {
+    border-radius: 5px;
+    font-family: 'Changa';
+    font-size: 14px;
 }
