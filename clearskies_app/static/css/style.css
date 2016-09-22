@@ -15,7 +15,7 @@ body{
   background: #666;
   color: ghostwhite;
   font-family: 'Changa', sans-serif;
-  text-align: center;  
+  text-align: center;
 }
 
 footer{
@@ -63,7 +63,7 @@ footer{
 
 #cber {
     width: 250px;
-    height: 630px;
+    height: 580px;
     overflow-y: scroll;
     overflow-x:hidden;
 }
