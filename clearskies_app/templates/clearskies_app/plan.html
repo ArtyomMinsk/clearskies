@@ -33,7 +33,12 @@
           <form>
           <INPUT TYPE="button" onClick="history.go(0)" VALUE="Start Over" class="button" id="start_over">
           </form>
-
+          <p id="helpMe">click here</p>
+          <div id="tooltip"><strong>Hints</strong><br>
+              Type your departure airport,
+              followed by any changes in direction (waypoints)<br>
+              to your ultimate destination<br>
+              [TAB] to create new waypoints</div>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
       </aside>
       <aside class="sidebar-second"><em>Cloud Bases enroute</em>
           <ul id="cber">
@@ -42,12 +47,8 @@
     </div>
   </section>
   <footer class="footer">
-    <p id="helpMe">helpMe</p>
-    <div id="tooltip"><strong>Hints</strong><br>
-        Type your departure airport,
-        followed by any changes in direction (waypoints)<br>
-        to your ultimate destination<br>
-        [TAB] to create new waypoints</div>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+    <p><span style="padding-left: 10px; padding-right: 400px;" id="hoverSpot">helpMe</span>
+    <span style="background-color: #66d9ff; padding-right: 15px; padding-left: 15px;">Clear Sky</span><span style="background-color: #00cc44; padding-right: 15px; padding-left: 15px;">Few</span><span style="color: black; background-color: yellow; padding-right: 15px; padding-left: 15px;">Scattered</span><span style="background-color: orange; padding-right: 15px; padding-left: 15px;">Broken</span><span style="background-color: red; padding-right: 15px; padding-left: 15px;">Overcast</span></p>
   </footer>
 </div>
 </body>

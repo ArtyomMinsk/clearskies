@@ -10,12 +10,21 @@ body{
   display: flex;
   flex-direction: column;
 }
-.header, .footer{
+.header{
   height: 50px;
   background: #666;
   color: ghostwhite;
   font-family: 'Changa', sans-serif;
   text-align: center;
+}
+
+.footer{
+  height: 50px;
+  background: #666;
+  color: ghostwhite;
+  font-family: 'Changa', sans-serif;
+  text-align: left;
+  padding-left: 20px;
 }
 
 .header h2 {
@@ -79,10 +88,9 @@ input[type=number]::-webkit-inner-spin-button {
   background-color: red;
 }
 
-.footer #helpMe {
-    font-size: 15px;
-    text-align: left;
-    margin-left: 10px;
+#helpMe {
+    color: ghostwhite;
+    padding-top: 200px;
 }
 
 #tooltip {
@@ -94,6 +102,8 @@ input[type=number]::-webkit-inner-spin-button {
     bottom: 70px;
     left: 15px;
     font-style: italic;
+    color: white;
+    text-align: center;
 }
 
 .userinput {
