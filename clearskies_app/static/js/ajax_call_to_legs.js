@@ -2,6 +2,7 @@
 document.getElementById("corridor_width").defaultValue = 0.2;
 $("#get_all").on('click', function() {
     $('.sidebar-first').hide();
+    $('.sidebar-second').show();    
     google.maps.event.trigger(map, 'resize');
     var wypts = []
     $.each($(".get_only_one"),function(i,e)
