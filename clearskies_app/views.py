@@ -11,9 +11,8 @@ def home(request):
     return render(request, 'clearskies_app/plan.html', context=None)
 
 
-def plan(request):
-    airfields = Airfield.objects.all()
-    return render(request, 'clearskies_app/plan.html', {'airfields': airfields})
+def test(request):
+    return render(request, 'clearskies_app/test.html', context=None)
 
 
 def get_corridor_airports(st, fin, width):
@@ -27,8 +26,8 @@ def get_corridor_airports(st, fin, width):
     startLON = start.longitude
     finishLAT = finish.latitude
     finishLON = finish.longitude
-    print("st: fin:",start, finish)
-    print("startLAT, startLON, finishLAT, finishLON",startLAT, startLON, finishLAT, finishLON)
+    print("st: fin:", start, finish)
+    print("startLAT, startLON, finishLAT, finishLON", startLAT, startLON, finishLAT, finishLON)
 
     if startLAT < finishLAT:
         x1 = startLAT
@@ -125,7 +124,7 @@ def get_corridor_airports(st, fin, width):
 
 
 # this function gets the all airports in the whole flight path
-@cache_page(60 * 2)
+# @cache_page(60 * 2)
 def legs(request):
     weather_stations = []
     identifiers = request.GET.getlist('waypoint')

@@ -28,7 +28,7 @@ $.ajax({type: "GET",
                 // console.log('cloud_bases:', weatherStation.ceiling);
                 colored_markers_on_map(weatherStation);
                 $('#cber').append($item);
-                $item.append(weatherStation.identifier)
+                $item.append(weatherStation.identifier + '-' + weatherStation.name)
                 $item.append($ceiling)
                 weatherStation.ceiling.forEach(function(text) {
                   $ceiling.append('<li>' + text + '</li>');

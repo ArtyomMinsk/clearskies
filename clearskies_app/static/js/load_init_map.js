@@ -11,8 +11,3 @@ var map = new google.maps.Map(document.getElementById('map'), {
   mapTypeId: google.maps.MapTypeId.TERRAIN
 });
 console.log("i am here at load init map JS")
-
-
-// airfields = ['KRDU', 'KILM']
-// console.log(airfields.indexOf('KILM') == 1)
-// console.log(airfields.indexOf('KCLT') == -1)
