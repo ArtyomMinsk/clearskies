@@ -22,10 +22,6 @@ $.ajax({type: "GET",
             weatherStations.forEach(function(weatherStation) {
                 var $item = $('<li></li>')
                 var $ceiling = $('<ul></ul>')
-                // console.log('identifier:', weatherStation.identifier);
-                // console.log('lat:', weatherStation.latitude);
-                // console.log('lon:', weatherStation.longitude);
-                // console.log('cloud_bases:', weatherStation.ceiling);
                 colored_markers_on_map(weatherStation);
                 $('#cber').append($item);
                 $item.append(weatherStation.identifier + '-' + weatherStation.name)
@@ -69,11 +65,24 @@ function colored_markers_on_map(weather){
           icon: mrkColor,
           draggable: true,
           map: map,
-
+          wID: weather.identifier
         });
+
         newMarker.addListener('click', function() {
           infoWindow.open(map, newMarker);
         });
+
+        newMarker.addListener('mouseover', function() {
+            console.log(newMarker.wID)
+            highLightData(newMarker.wID, "yes")
+        });
+
+        newMarker.addListener('mouseout', function() {
+            console.log('bye');
+            highLightData(newMarker.wID, "no")
+
+        });
+
         count++;
     }
     if(allMarkers.length > 1){
@@ -84,3 +93,19 @@ function colored_markers_on_map(weather){
         map.fitBounds(bounds);
     }
 }
+
+function highLightData(wID, yesNo){
+    var allData = document.getElementById("cber").getElementsByTagName("LI");
+        for (i = 0; i < allData.length+1; i++) {
+            console.log(allData[i].firstChild.data, wID)
+            if(allData[i].firstChild.data == wID){
+                console.log("found it")
+                if(yesNo == "yes"){ allData[i].style.backgroundColor = "gray"
+                                    allData[i].style.fontWeight = "bolder"
+                } else {
+                    allData[i].style.backgroundColor = "ghostwhite"
+                    allData[i].style.fontWeight = "normal"
+                 }
+                }
+            }
+        }

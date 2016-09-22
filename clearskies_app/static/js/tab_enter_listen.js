@@ -61,9 +61,6 @@ $("#leg_boxes").on('keydown', 'input,select', function(e) {
 });
 
 function plot_on_map(quickMarker){
-    // var res = quickMarker.split("-");
-    // qLatMarker = parseFloat(res[0])
-    // qLonMarker = -parseFloat(res[1])
     var infoWindow = new google.maps.InfoWindow({
       content: quickMarker.identifier + ': ' + quickMarker.name + '<br>Latitude: ' + quickMarker.latitude + '<br>Longtitude: ' + quickMarker.longitude
     });
@@ -99,7 +96,6 @@ $.ajax({type: "GET",
     }).done(function(response) {
         airfields = response
     })
-
 
 function is_valid_airfield(identifier) {
   return airfields.indexOf(identifier) != -1

@@ -124,7 +124,7 @@ def get_corridor_airports(st, fin, width):
 
 
 # this function gets the all airports in the whole flight path
-# @cache_page(60 * 2)
+@cache_page(60 * 0)
 def legs(request):
     weather_stations = []
     identifiers = request.GET.getlist('waypoint')
