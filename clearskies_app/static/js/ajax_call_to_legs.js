@@ -1,8 +1,7 @@
 //wypts = []
 document.getElementById("corridor_width").defaultValue = 0.2;
 $("#get_all").on('click', function() {
-    $('.sidebar-first').hide();
-    $('.sidebar-second').show();    
+    slide();
     google.maps.event.trigger(map, 'resize');
     var wypts = []
     $.each($(".get_only_one"),function(i,e)
@@ -110,3 +109,8 @@ function highLightData(wID, yesNo){
                 }
             }
         }
+function slide(){
+    $('.sidebar-first').hide(800);
+    $('.sidebar-second').show(800);
+    google.maps.event.trigger(map, 'resize');
+}
