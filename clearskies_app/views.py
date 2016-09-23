@@ -8,7 +8,7 @@ import time
 
 
 def home(request):
-    return render(request, 'clearskies_app/plan.html', context=None)
+    return render(request, 'clearskies_app/plan_art.html', context=None)
 
 
 def test(request):
