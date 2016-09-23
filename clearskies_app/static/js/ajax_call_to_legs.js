@@ -1,6 +1,8 @@
 //wypts = []
 document.getElementById("corridor_width").defaultValue = 0.2;
 $("#get_all").on('click', function() {
+    slide();
+    google.maps.event.trigger(map, 'resize');
     var wypts = []
     $.each($(".get_only_one"),function(i,e)
         {if(e.value > "")
@@ -20,10 +22,6 @@ $.ajax({type: "GET",
             weatherStations.forEach(function(weatherStation) {
                 var $item = $('<li></li>')
                 var $ceiling = $('<ul></ul>')
-                // console.log('identifier:', weatherStation.identifier);
-                // console.log('lat:', weatherStation.latitude);
-                // console.log('lon:', weatherStation.longitude);
-                // console.log('cloud_bases:', weatherStation.ceiling);
                 colored_markers_on_map(weatherStation);
                 $('#cber').append($item);
                 $item.append(weatherStation.identifier)
@@ -67,11 +65,52 @@ function colored_markers_on_map(weather){
           icon: mrkColor,
           draggable: true,
           map: map,
-
+          wID: weather.identifier
         });
+
         newMarker.addListener('click', function() {
           infoWindow.open(map, newMarker);
         });
+
+        newMarker.addListener('mouseover', function() {
+            console.log(newMarker.wID)
+            highLightData(newMarker.wID, "yes")
+        });
+
+        newMarker.addListener('mouseout', function() {
+            console.log('bye');
+            highLightData(newMarker.wID, "no")
+
+        });
+
         count++;
     }
+    if(allMarkers.length > 1){
+        var bounds = new google.maps.LatLngBounds();
+        for (var i = 0; i < allMarkers.length; i++) {
+         bounds.extend(allMarkers[i].getPosition());
+            }
+        map.fitBounds(bounds);
+    }
+}
+
+function highLightData(wID, yesNo){
+    var allData = document.getElementById("cber").getElementsByTagName("LI");
+        for (i = 0; i < allData.length+1; i++) {
+            if(allData[i].firstChild.data == wID){
+                console.log("found it")
+                if(yesNo == "yes"){ allData[i].style.backgroundColor = "gray"
+                                    allData[i].style.fontWeight = "bolder"
+                                    allData[i].style.color = "white"
+                } else {
+                    allData[i].style.backgroundColor = "ghostwhite"
+                    allData[i].style.fontWeight = "normal"
+                 }
+                }
+            }
+        }
+function slide(){
+    $('.sidebar-first').hide(800);
+    $('.sidebar-second').show(800);
+    google.maps.event.trigger(map, 'resize');
 }

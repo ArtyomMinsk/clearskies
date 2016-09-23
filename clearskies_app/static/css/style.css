@@ -2,7 +2,7 @@
 
 body{
   margin: 0;
-  font-family: sans-serif;
+  font-family: 'Changa';
 }
 .wrapper{
   min-height: 100vh;
@@ -10,12 +10,21 @@ body{
   display: flex;
   flex-direction: column;
 }
-.header, .footer{
-  height: 50px;
+.header{
+  height: 80px;
   background: #666;
-  color: #fff;
+  color: ghostwhite;
   font-family: 'Changa', sans-serif;
   text-align: center;
+}
+
+footer{
+  height: 60px;
+  background: #666;
+  color: ghostwhite;
+  font-family: 'Changa', sans-serif;
+  text-align: left;
+  padding-left: 20px;
 }
 
 .header h2 {
@@ -39,25 +48,86 @@ body{
 }
 .sidebar-first{
   width: 20%;
-  background: #ccc;
+  background: ghostwhite;
   order: 1;
   padding: 2.5%;
 }
 .sidebar-second{
   width: 20%;
   order: 3;
-  background: #ddd;
+  background: ghostwhite;
   padding: 2.5%;
   font-size: 10px;
+  display: none;
 }
 
 #cber {
     width: 250px;
-    height: 450px;
-    overflow-y: scroll;
+    height: 480px;
+    overflow-y: auto;
     overflow-x:hidden;
 }
 
 #corridor_width {
     font-size: 18;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+    opacity: 1;
+    text-align: center;
+}
+
+.button {
+  background-color: green;
+  color: white;
+  border-radius: 5px;
+  font-family: 'Changa';
+  width: 100px;
+}
+
+#start_over {
+  background-color: red;
+}
+
+#helpMe {
+    color: ghostwhite;
+    padding-top: 200px;
+}
+
+#tooltip {
+    display: none;
+    border: 10px solid grey;
+    width: 300px;
+    position: absolute;
+    background-color: black;
+    bottom: 70px;
+    left: 15px;
+    font-style: italic;
+    color: white;
+    text-align: center;
+}
+
+.userinput {
+    border-radius: 5px;
+    font-family: 'Changa';
+    font-size: 14px;
+}
+
+footer p {
+    vertical-align: middle;
+}
+
+#return {
+    width: 300px;
+    height: 80px;
+    /*background: url('../img/steelButton.png') no-repeat;*/
+    border-radius: 30px;
+    background: #666;
+    outline:none;
+    text-align: center;
+    color: white;
+    font-family: 'Changa', sans-serif;
+    font-size: 36px;
+    font-style: italic;
+    font-weight: bold;
 }
