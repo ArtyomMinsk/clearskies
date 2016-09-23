@@ -63,12 +63,8 @@ footer{
 
 #cber {
     width: 250px;
-<<<<<<< HEAD
     height: 350px;
-=======
-    height: 580px;
->>>>>>> 5f43cf9e496ed0a81cfb93a37ec6010357b7084d
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x:hidden;
 }
 
@@ -119,4 +115,19 @@ input[type=number]::-webkit-inner-spin-button {
 
 footer p {
     vertical-align: middle;
+}
+
+#return {
+    width: 300px;
+    height: 80px;
+    /*background: url('../img/steelButton.png') no-repeat;*/
+    border-radius: 30px;
+    background: #666;
+    outline:none;
+    text-align: center;
+    color: white;
+    font-family: 'Changa', sans-serif;
+    font-size: 36px;
+    font-style: italic;
+    font-weight: bold;
 }
