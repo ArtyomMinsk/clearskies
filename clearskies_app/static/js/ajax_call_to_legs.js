@@ -97,7 +97,6 @@ function colored_markers_on_map(weather){
 function highLightData(wID, yesNo){
     var allData = document.getElementById("cber").getElementsByTagName("LI");
         for (i = 0; i < allData.length+1; i++) {
-            console.log(allData[i].firstChild.data, wID)
             if(allData[i].firstChild.data == wID){
                 console.log("found it")
                 if(yesNo == "yes"){ allData[i].style.backgroundColor = "gray"
