@@ -101,6 +101,7 @@ function highLightData(wID, yesNo){
                 console.log("found it")
                 if(yesNo == "yes"){ allData[i].style.backgroundColor = "gray"
                                     allData[i].style.fontWeight = "bolder"
+                                    allData[i].style.color = "white"
                 } else {
                     allData[i].style.backgroundColor = "ghostwhite"
                     allData[i].style.fontWeight = "normal"
