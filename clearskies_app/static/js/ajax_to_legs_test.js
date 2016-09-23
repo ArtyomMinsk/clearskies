@@ -1,13 +1,14 @@
 //wypts = []
 document.getElementById("corridor_width").defaultValue = 0.2;
 $("#get_all").on('click', function() {
-    slide();
-    google.maps.event.trigger(map, 'resize');
-    var wypts = []
-    $.each($(".get_only_one"),function(i,e)
-        {if(e.value > "")
-            {wypts.push("K" + e.value.toUpperCase())}
-    })
+  setMapOnAll(null);
+  google.maps.event.trigger(map, 'resize');
+  var wypts = [];
+  $.each($(".get_only_one"),function(i,e) {
+    if(e.value > "") {
+      wypts.push("K" + e.value.toUpperCase()
+    )};
+  });
 
 mydata={'waypoint': wypts, 'corridor_width': $("#corridor_width").val()}
 console.log(mydata);
@@ -20,7 +21,7 @@ $.ajax({type: "GET",
             $('#cber').children().remove();
             console.log('Removed #cber children')
             weatherStations.forEach(function(weatherStation) {
-                var $item = $('<li></li>')
+                var $item = $('<li class="airfield"></li>')
                 var $ceiling = $('<ul></ul>')
                 colored_markers_on_map(weatherStation);
                 $('#cber').append($item);
@@ -63,7 +64,7 @@ function colored_markers_on_map(weather){
         var newMarker = new google.maps.Marker({
           position: new google.maps.LatLng(weather.latitude, weather.longitude),
           icon: mrkColor,
-          draggable: true,
+          draggable: false,
           map: map,
           wID: weather.identifier
         });
@@ -78,39 +79,33 @@ function colored_markers_on_map(weather){
         });
 
         newMarker.addListener('mouseout', function() {
-            console.log('bye');
             highLightData(newMarker.wID, "no")
 
         });
 
         count++;
     }
-    if(allMarkers.length > 1){
+    if(markers.length > 1){
         var bounds = new google.maps.LatLngBounds();
-        for (var i = 0; i < allMarkers.length; i++) {
-         bounds.extend(allMarkers[i].getPosition());
+        for (var i = 0; i < markers.length; i++) {
+         bounds.extend(markers[i].getPosition());
             }
         map.fitBounds(bounds);
     }
 }
 
 function highLightData(wID, yesNo){
-    var allData = document.getElementById("cber").getElementsByTagName("LI");
-        for (i = 0; i < allData.length+1; i++) {
-            console.log(allData[i].firstChild.data, wID)
-            if(allData[i].firstChild.data == wID){
-                console.log("found it")
-                if(yesNo == "yes"){ allData[i].style.backgroundColor = "gray"
-                                    allData[i].style.fontWeight = "bolder"
+    var allData = document.getElementById("cber").getElementsByClassName("airfield");
+        for (i = 0; i < allData.length; i++) {
+          //console.log(allData[i])
+            if(allData[i].innerHTML.slice(0, 4) == wID){
+                if(yesNo == "yes"){
+                  allData[i].style.fontWeight = "bolder";
+                  allData[i].style.color = "red";
                 } else {
-                    allData[i].style.backgroundColor = "ghostwhite"
-                    allData[i].style.fontWeight = "normal"
+                  allData[i].style.fontWeight = "normal";
+                  allData[i].style.color = "black";
                  }
                 }
             }
         }
-function slide(){
-    $('.sidebar-first').hide(800);
-    $('.sidebar-second').show(800);
-    google.maps.event.trigger(map, 'resize');
-}
