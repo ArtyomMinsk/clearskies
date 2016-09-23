@@ -1,0 +1,220 @@
+@import 'https://fonts.googleapis.com/css?family=Changa';
+
+html {
+  background-color: ghostwhite;
+}
+
+body{
+  margin: 0;
+  font-family: sans-serif;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: ghostwhite !important;
+}
+
+.navbar {
+  background-color: #615C60;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #fff;
+    text-align: center;
+}
+
+.navbar-default .navbar-brand {
+    color: #fff;
+    text-align: center;
+
+}
+
+
+h2 {
+  color: #fff;
+  font-family: 'Changa', sans-serif;
+  /*font-size: 30px;*/
+  font-size: 35px;
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 0.5px;
+  margin-bottom: 1px;
+  /*padding-top: -10px;*/
+  padding-left: 50px;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+  font-weight: bold;
+  color: #2C3E50;
+}
+
+.container {
+  width: 100%;
+  /*margin-top: 0cm 0cm 0cm 0cm;*/
+  /*margin-left: 0cm;*/
+}
+
+.row {
+    margin-right: 0;
+    margin-left: 0;
+
+    width: 100%;
+    height: 100%;
+    /*margin-top: 70px;*/
+}
+
+.col-md-3 {
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-bottom: -12px;
+}
+
+.col-md-9 {
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-bottom: 0px;
+}
+
+#map{
+  height: 703px;
+}
+
+.wrapper{
+  /*min-height: 100vh;*/
+  /*background: #ccc;*/
+  display: flex;
+  flex-direction: column;
+}
+
+#cber {
+    width: 340px;
+    height: 580px;
+    overflow-y: scroll;
+    overflow-x:hidden;
+}
+
+#corridor_width {
+    font-size: 18;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+    opacity: 1;
+    text-align: center;
+}
+/*==============================*/
+
+/*----- Tabs -----*/
+.tabs {
+    width:330px;
+    display:inline-block;
+}
+
+    /*----- Tab Links -----*/
+    /* Clearfix */
+    .tab-links:after {
+        display:block;
+        clear:both;
+        content:'';
+    }
+
+    .tab-links li {
+        margin: -10px 3px;
+        margin-top: 3px;
+        float:left;
+        list-style:none;
+    }
+
+        .tab-links a {
+            width: 130px;
+            text-align: center;
+            padding: 9px 5px;
+            display:inline-block;
+            border-radius:10px 10px 0px 0px;
+            background:#7FB5DA;
+            font-size:16px;
+            font-weight:600;
+            color:#4c4c4c; /*tab text color*/
+            transition:all linear 0.75s;
+        }
+
+        .tab-links a:hover {
+            background:#a7cce5;
+            text-decoration:none;
+        }
+
+    li.active a, li.active a:hover {
+        background:#ccc;
+        color:#4c4c4c;
+    }
+
+    /*----- Content of Tabs -----*/
+    .tab-content {
+        padding:15px;
+        border-radius:3px;
+        box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
+        background:#ccc;
+        width: 360px;
+        height: 657px;
+    }
+
+        .tab {
+            display:none;
+        }
+
+        .tab.active {
+            display:block;
+        }
+
+        .get_only_one {
+          width: 180px;
+          border-radius: 10px;
+          text-align: center;
+          background-color: ghostwhite;
+        }
+
+        .button {
+          background-color: green;
+          color: white;
+          border-radius: 5px;
+          font-family: 'Changa';
+          width: 100px;
+        }
+
+        #start_over {
+          background-color: red;
+        }
+
+        .userinput {
+            border-radius: 5px;
+            font-family: 'Changa';
+            font-size: 14px;
+        }
+
+        #footer {
+            vertical-align: middle;
+            color: #fff;
+            padding-top: 15px;
+            padding-left: 30px;
+        }
+
+        #helpMe {
+            color: ghostwhite;
+            padding-top: 200px;
+        }
+
+        #tooltip {
+            display: none;
+            border: 10px solid grey;
+            width: 300px;
+            position: absolute;
+            background-color: black;
+            bottom: 70px;
+            left: 15px;
+            font-style: italic;
+            color: white;
+            text-align: center;
+        }
