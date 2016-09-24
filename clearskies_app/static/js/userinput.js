@@ -29,7 +29,7 @@ function is_valid_airfield(identifier) {
 
 function add_leg() {
   $('.get_only_one').each(function() {
-    if (!is_valid_airfield('K' + this.value.toUpperCase())) {
+    if (!is_valid_airfield('K' + this.value.toUpperCase()) && !$(this).hasClass('first_input')) {
       $(this).parent().remove();
     }
   });

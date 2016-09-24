@@ -47,7 +47,7 @@
                   <form method="post">
                     {% csrf_token %}
                     <div class="ui-widget" id="leg_boxes">
-                        <input type="text" name="waypoint" class="get_only_one" style="text-transform:uppercase" placeholder="Enter the waypoint" autofocus required/>
+                        <input type="text" name="waypoint" class="get_only_one first_input" style="text-transform:uppercase" placeholder="Enter the waypoint" autofocus required/>
                         <br>
                     </div>
                     <br>
@@ -84,7 +84,7 @@
       </div>
 
     <div class="col-md-9">
-        <main class="main" id="map">Content: Flexible width</main>
+        <div class="main" id="map">Content: Flexible width</div>
     </div>
   </div>
 
@@ -97,6 +97,7 @@
           <span style="color: black; background-color: yellow; padding: 10px 15px 10px 15px;">Scattered</span>
           <span style="background-color: orange; padding: 10px 15px 10px 15px;">Broken</span>
           <span style="background-color: red; padding: 10px 15px 10px 15px;">Overcast</span>
+          <span style="color: ghostwhite; padding: 10px 15px 10px 300px;">© 2016, ClearSkies</span>
         </p>
         </div>
       </div>

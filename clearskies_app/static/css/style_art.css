@@ -79,10 +79,11 @@ a:hover {
   padding-left: 0px;
   margin-bottom: 0px;
   width: 75%;
+  height: 100%;
 }
 
 #map{
-  height: 703px;
+  height: 300px;
 }
 
 .wrapper{
@@ -98,6 +99,7 @@ a:hover {
     height: 580px;
     overflow-y: scroll;
     overflow-x:hidden;
+    padding-left: 0;
 }
 
 #corridor_width {
@@ -111,9 +113,10 @@ input[type=number]::-webkit-inner-spin-button {
 /*==============================*/
 
 /*----- Tabs -----*/
-.tabs {
-    width:330px;
+#tabs {
+    width:100%;
     display:inline-block;
+    float: left;
 }
 
     /*----- Tab Links -----*/
@@ -156,11 +159,11 @@ input[type=number]::-webkit-inner-spin-button {
 
     /*----- Content of Tabs -----*/
     .tab-content {
-        padding:15px;
+        padding:3%;
         border-radius:3px;
         box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
         background:#ccc;
-        width: 360px;
+        width: 94%;
         height: 657px;
         margin: 0;
     }
@@ -214,7 +217,7 @@ input[type=number]::-webkit-inner-spin-button {
         #tooltip {
             display: none;
             border: 10px solid grey;
-            width: 300px;
+            width: 75%;
             position: absolute;
             background-color: black;
             bottom: 70px;
@@ -240,4 +243,5 @@ input[type=number]::-webkit-inner-spin-button {
 
   .airfield {
     list-style: none;
+    padding-left: 10%;
   }
