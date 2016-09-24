@@ -89,6 +89,13 @@ function plot_to_map(allAirfields) {
       position: new google.maps.LatLng(airfield.latitude, airfield.longitude),
     });
     markers.push(marker);
+    if(markers.length > 1){
+        var bounds = new google.maps.LatLngBounds();
+        for (var i = 0; i < markers.length; i++) {
+         bounds.extend(markers[i].getPosition());
+            }
+        map.fitBounds(bounds);
+    }
     setMapOnAll(map);
   })
 }

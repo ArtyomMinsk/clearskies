@@ -71,12 +71,14 @@ a:hover {
   padding-right: 0px;
   padding-left: 0px;
   margin-bottom: -12px;
+  width: 25%;
 }
 
 .col-md-9 {
   padding-right: 0px;
   padding-left: 0px;
   margin-bottom: 0px;
+  width: 75%;
 }
 
 #map{
@@ -91,6 +93,7 @@ a:hover {
 }
 
 #cber {
+    color: black;
     width: 340px;
     height: 580px;
     overflow-y: scroll;
@@ -126,18 +129,18 @@ input[type=number]::-webkit-inner-spin-button {
         margin-top: 3px;
         float:left;
         list-style:none;
+        width: 40%;
     }
 
         .tab-links a {
-            width: 130px;
             text-align: center;
             padding: 9px 5px;
             display:inline-block;
             border-radius:10px 10px 0px 0px;
-            background:#7FB5DA;
-            font-size:16px;
+            background: gray;
+            font-size:1em;
             font-weight:600;
-            color:#4c4c4c; /*tab text color*/
+            color: ghostwhite; /*tab text color*/
             transition:all linear 0.75s;
         }
 
@@ -159,6 +162,7 @@ input[type=number]::-webkit-inner-spin-button {
         background:#ccc;
         width: 360px;
         height: 657px;
+        margin: 0;
     }
 
         .tab {
@@ -171,9 +175,10 @@ input[type=number]::-webkit-inner-spin-button {
 
         .get_only_one {
           width: 180px;
-          border-radius: 10px;
+          border-radius: 5px;
           text-align: center;
           background-color: ghostwhite;
+          font-family: 'Changa';
         }
 
         .button {
@@ -198,7 +203,7 @@ input[type=number]::-webkit-inner-spin-button {
             vertical-align: middle;
             color: #fff;
             padding-top: 15px;
-            padding-left: 30px;
+            padding-left: 80px;
         }
 
         #helpMe {
@@ -218,3 +223,21 @@ input[type=number]::-webkit-inner-spin-button {
             color: white;
             text-align: center;
         }
+
+  .leg_button {
+    border: 0;
+    background: transparent;
+  }
+
+  .leg_button:focus {
+    outline: 0;
+  }
+
+  .glyph {
+    width: 15px;
+    vertical-align: middle;
+  }
+
+  .airfield {
+    list-style: none;
+  }

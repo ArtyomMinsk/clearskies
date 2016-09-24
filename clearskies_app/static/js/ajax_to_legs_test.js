@@ -1,7 +1,7 @@
 //wypts = []
 document.getElementById("corridor_width").defaultValue = 0.2;
 $("#get_all").on('click', function() {
-  setMapOnAll(null);
+
   google.maps.event.trigger(map, 'resize');
   var wypts = [];
   $.each($(".get_only_one"),function(i,e) {
@@ -17,6 +17,7 @@ $.ajax({type: "GET",
         data : mydata,
         traditional: true,
     }).done(function(weatherStations) {
+            setMapOnAll(null);
             console.log(weatherStations);
             $('#cber').children().remove();
             console.log('Removed #cber children')
@@ -100,11 +101,11 @@ function highLightData(wID, yesNo){
           //console.log(allData[i])
             if(allData[i].innerHTML.slice(0, 4) == wID){
                 if(yesNo == "yes"){
-                  allData[i].style.fontWeight = "bolder";
-                  allData[i].style.color = "red";
+                  allData[i].style.background = "#615C60";
+                  allData[i].style.color = "white";
                 } else {
-                  allData[i].style.fontWeight = "normal";
                   allData[i].style.color = "black";
+                  allData[i].style.background = "#ccc";
                  }
                 }
             }
