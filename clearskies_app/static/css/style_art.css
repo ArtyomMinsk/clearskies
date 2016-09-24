@@ -121,6 +121,11 @@ input[type=number]::-webkit-inner-spin-button {
 
     /*----- Tab Links -----*/
     /* Clearfix */
+    .tab-links {
+      padding: 0 5%;
+    }
+
+
     .tab-links:after {
         display:block;
         clear:both;
@@ -130,7 +135,7 @@ input[type=number]::-webkit-inner-spin-button {
     .tab-links li {
         margin: -10px 3px;
         margin-top: 3px;
-        float:left;
+        float: left;
         list-style:none;
         width: 40%;
     }
@@ -139,12 +144,14 @@ input[type=number]::-webkit-inner-spin-button {
             text-align: center;
             padding: 9px 5px;
             display:inline-block;
+            white-space: nowrap;
             border-radius:10px 10px 0px 0px;
             background: gray;
             font-size:1em;
-            font-weight:600;
+            font-weight:500;
             color: ghostwhite; /*tab text color*/
             transition:all linear 0.75s;
+            width: 100%;
         }
 
         .tab-links a:hover {
@@ -159,11 +166,11 @@ input[type=number]::-webkit-inner-spin-button {
 
     /*----- Content of Tabs -----*/
     .tab-content {
-        padding:3%;
+        padding:10%;
         border-radius:3px;
         box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
         background:#ccc;
-        width: 94%;
+        width: 100%;
         height: 657px;
         margin: 0;
     }
