@@ -53,6 +53,7 @@ header h2 {
 .tab-content {
   background: #ccc;
   margin: 0 auto;
+  padding: 10%;
 }
 
 #map {
@@ -70,11 +71,24 @@ header h2 {
   width: 100%;
   list-style: none;
   padding: 0;
+  margin: 0;
   background: ghostwhite;
+}
+
+.tab-links li {
+  margin-top: 5px;
+  width: 50%;
 }
 
 .tab-links a {
   text-decoration: none;
+  text-align: center;
+  padding: 5px 5px 0 5px;
+  border-radius: 10px 10px 0 0;
+  display: inline-block;
+  width: 100%;
+  color: ghostwhite;
+  background: gray;
 }
 
 .tab-links a:visited {
@@ -87,6 +101,11 @@ header h2 {
 
 .tab.active {
     display:block;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+    opacity: 1;
+    text-align: center;
 }
 
 .leg_button {
@@ -115,9 +134,19 @@ header h2 {
   background-color: red;
 }
 
+.data {
+  height: 50%;
+  position: fixed;
+  overflow-y: scroll;
+  margin: 0;
+  padding: 0;
+}
+
 #cber {
   list-style: none;
-  width: 80%;
+  width: 100%;
+
+  padding: 0 3%;
 }
 
 #cber li {
@@ -137,4 +166,15 @@ header h2 {
   /*margin-top: 100px;*/
   padding: 7px 15px 7px 15px;
   border-radius: 5px;
+}
+
+
+.tab-links a:hover {
+    background:#a7cce5;
+    text-decoration:none;
+}
+
+li.active a, li.active a:hover {
+background:#ccc;
+color:#4c4c4c;
 }
