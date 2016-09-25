@@ -104,7 +104,7 @@ function highLightData(wID, yesNo){
                   allData[i].style.background = "#615C60";
                   allData[i].style.color = "white";
                 } else {
-                  allData[i].style.color = "black";
+                  allData[i].style.color = "#333";
                   allData[i].style.background = "#ccc";
                  }
                 }
