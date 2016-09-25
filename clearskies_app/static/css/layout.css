@@ -48,7 +48,6 @@ header h2 {
   background: #ccc;
   bottom: 50px;
   top: 50px;
-  overflow: auto;
 }
 
 .tab-content {
@@ -139,7 +138,6 @@ input[type=number]::-webkit-inner-spin-button {
   height: 50%;
   background: gainsboro;
   border-radius: 5px;
-  overflow-y: scroll;
   margin: 0;
   padding: 0;
 }
@@ -148,10 +146,12 @@ input[type=number]::-webkit-inner-spin-button {
   list-style: none;
   width: 100%;
   padding: 0;
+  overflow-y: auto;
 }
 
 #cber li {
   padding: 0 10px;
+  bottom: 50px;
 }
 
 table {
