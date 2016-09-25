@@ -168,6 +168,18 @@ table {
   border-radius: 5px;
 }
 
+#tooltip {
+    display: none;
+    border: 10px solid grey;
+    width: 23%;
+    position: absolute;
+    background-color: black;
+    bottom: 70px;
+    left: 15px;
+    font-style: italic;
+    color: white;
+    text-align: center;
+}
 
 .tab-links a:hover {
     background:#a7cce5;
