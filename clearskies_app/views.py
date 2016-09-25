@@ -12,7 +12,7 @@ def home(request):
 
 
 def test(request):
-    return render(request, 'clearskies_app/test.html', context=None)
+    return render(request, 'clearskies_app/layout.html', context=None)
 
 
 def get_corridor_airports(st, fin, width):

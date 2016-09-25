@@ -145,6 +145,7 @@ input[type=number]::-webkit-inner-spin-button {
             padding: 9px 5px;
             display:inline-block;
             white-space: nowrap;
+            overflow-x: hidden;
             border-radius:10px 10px 0px 0px;
             background: gray;
             font-size:1em;

@@ -1,0 +1,140 @@
+@import 'https://fonts.googleapis.com/css?family=Changa';
+
+html {
+  height: 100%;
+}
+
+body{
+  margin: 0 auto;
+  min-height: 100%;
+  font-family: 'Changa';
+}
+
+
+
+.wrapper {
+  padding: 50px 0;
+  background: ghostwhite;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+header, footer {
+  height: 50px;
+  background: #615c60;
+  color: ghostwhite;
+}
+
+header {
+  margin-top: -50px;
+}
+
+footer {
+  margin-bottom: -50px;
+  clear:both;
+}
+
+header h2 {
+  margin: 0 auto;
+  padding: 8.6px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#tabs {
+  height: 100%;
+  width: 25%;
+  float: left;
+  background: #ccc;
+}
+
+
+.tab-content {
+  background: #ccc;
+  margin: 0 auto;
+}
+
+#map {
+  height: 100%;
+  width: 75%;
+  float: right;
+}
+
+.get_only_one {
+  border-radius: 5px;
+}
+
+.tab-links {
+  display: inline-flex;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  background: ghostwhite;
+}
+
+.tab-links a {
+  text-decoration: none;
+}
+
+.tab-links a:visited {
+  text-decoration: none;
+}
+
+.tab {
+    display:none;
+}
+
+.tab.active {
+    display:block;
+}
+
+.leg_button {
+  border: 0;
+  background: transparent;
+}
+
+.leg_button:focus {
+  outline: 0;
+}
+
+.glyph {
+  width: 15px;
+  vertical-align: middle;
+}
+
+.button {
+  background-color: green;
+  color: white;
+  border-radius: 5px;
+  font-family: 'Changa';
+  width: 100px;
+}
+
+#start_over {
+  background-color: red;
+}
+
+#cber {
+  list-style: none;
+  width: 80%;
+}
+
+#cber li {
+  padding: 0 10px;
+}
+
+#footer {
+  text-align: center;
+  display: inline-block;
+  width: 60%;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 15px;
+}
+
+#footer span {
+  /*margin-top: 100px;*/
+  padding: 7px 15px 7px 15px;
+  border-radius: 5px;
+}
