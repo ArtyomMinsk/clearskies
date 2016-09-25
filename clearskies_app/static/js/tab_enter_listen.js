@@ -27,6 +27,7 @@ $("#leg_boxes").on('keydown', 'input,select', function(e) {
         textbox.type = "text"
         textbox.name = "waypoint"
         textbox.placeholder = "Enter next waypoint"
+        textbox.outline = "none";
         //textbox.attr("class","get_only_one")
         var att = document.createAttribute("class");       // Create a "class" attribute
         att.value = "get_only_one userinput";                           // Set the value of the class attribute
