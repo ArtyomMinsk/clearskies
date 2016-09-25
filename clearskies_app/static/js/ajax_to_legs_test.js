@@ -1,6 +1,14 @@
 //wypts = []
 document.getElementById("corridor_width").defaultValue = 0.2;
-$("#get_all").on('click', function() {
+$("#get_all").on('click', function(e) {
+
+    console.log("clickityCLACK")
+    var currentAttrValue = $('#tabs .tab-links a').attr('href');
+    $('#tabs .tab-links a').parent('li').removeClass('active');
+    $('#tabs ' + currentAttrValue).hide(400);
+    $('#tabs ' + currentAttrValue).siblings().show(400);
+    document.getElementById("firstSwitch").style = "background-color:#ccc; color:black;"
+    e.preventDefault();
 
   google.maps.event.trigger(map, 'resize');
   var wypts = [];
