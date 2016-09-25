@@ -133,7 +133,6 @@ input[type=number]::-webkit-inner-spin-button {
 
 .data {
   height: 50%;
-  position: fixed;
   overflow-y: scroll;
   margin: 0;
   padding: 0;
@@ -142,8 +141,7 @@ input[type=number]::-webkit-inner-spin-button {
 #cber {
   list-style: none;
   width: 100%;
-
-  padding: 0 3%;
+  padding: 0;
 }
 
 #cber li {
