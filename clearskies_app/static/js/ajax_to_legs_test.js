@@ -105,7 +105,7 @@ function highLightData(wID, yesNo){
                   allData[i].style.color = "white";
                 } else {
                   allData[i].style.color = "#333";
-                  allData[i].style.background = "#ccc";
+                  allData[i].style.background = "gainsboro";
                  }
                 }
             }

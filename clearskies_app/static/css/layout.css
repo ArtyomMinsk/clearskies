@@ -48,7 +48,7 @@ header h2 {
   background: #ccc;
   bottom: 50px;
   top: 50px;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .tab-content {
@@ -137,6 +137,8 @@ input[type=number]::-webkit-inner-spin-button {
 
 .data {
   height: 50%;
+  background: gainsboro;
+  border-radius: 5px;
   overflow-y: scroll;
   margin: 0;
   padding: 0;
