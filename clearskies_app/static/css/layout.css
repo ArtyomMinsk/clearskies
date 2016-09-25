@@ -41,12 +41,15 @@ header h2 {
 }
 
 #tabs {
-  height: 100%;
+  position: fixed;
+  /*height: 100%;*/
   width: 25%;
   float: left;
   background: #ccc;
+  bottom: 50px;
+  top: 50px;
+  overflow: auto;
 }
-
 
 .tab-content {
   background: #ccc;
@@ -134,6 +137,8 @@ input[type=number]::-webkit-inner-spin-button {
 
 .data {
   height: 50%;
+  background: gainsboro;
+  border-radius: 5px;
   overflow-y: scroll;
   margin: 0;
   padding: 0;
@@ -149,11 +154,16 @@ input[type=number]::-webkit-inner-spin-button {
   padding: 0 10px;
 }
 
+table {
+  text-align: center;
+  padding-left: 20px;
+}
+
 #footer {
   text-align: center;
   display: inline-block;
   width: 60%;
-  margin-left: 20%;
+  margin-left: 30%;
   margin-right: 20%;
   margin-top: 15px;
 }
@@ -164,6 +174,18 @@ input[type=number]::-webkit-inner-spin-button {
   border-radius: 5px;
 }
 
+#tooltip {
+    display: none;
+    border: 10px solid grey;
+    width: 23%;
+    position: absolute;
+    background-color: black;
+    bottom: 70px;
+    left: 15px;
+    font-style: italic;
+    color: white;
+    text-align: center;
+}
 
 .tab-links a:hover {
     background:#a7cce5;

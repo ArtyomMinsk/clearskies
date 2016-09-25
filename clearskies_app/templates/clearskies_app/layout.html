@@ -21,14 +21,20 @@
             <p>Enter Airport Identifier:</p>
             <div id="leg_boxes">
               <div class="userinput">
-                <input type="text" name="waypoint" class="get_only_one" style="text-transform:uppercase" placeholder="TAB for new waypoint" autofocus/>
+                <input type="text" name="waypoint" class="get_only_one" style="text-transform:uppercase; outline:none;" placeholder="TAB for new waypoint" autofocus/>
               </div>
             </div>
             <button class="leg_button" onClick="add_leg()">+ Add waypoint</button>
             <p>Change the corridor width:</p>
-            <input type="number" id="corridor_width" name="corridor_width" min="0.1" max="2.0" step="0.1" class="" title="The value must be between 0.1 and 2.0 minutes"><br>
+            <input type="number" id="corridor_width" name="corridor_width" min="0.1" max="2.0" step="0.1" class="" style="outline:none" title="The value must be between 0.1 and 2.0 minutes"><br>
             <br><button id="get_all" class='button'>Report</button>
             <button onClick="history.go(0)" id="start_over" class='button'>Start Over</button>
+
+            <div id="tooltip"><strong>Hints</strong><br>
+                Type your departure airport,
+                followed by any changes in direction (waypoints)<br>
+                to your ultimate destination<br>
+                [TAB] to create new waypoints</div>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
         </div>
         <div id="tab2" class='tab'>
           <em>Cloud Bases enroute</em>
@@ -40,13 +46,26 @@
     </div>
       <div id="map">Content</div>
     <footer>
-      <span id="footer">
-        <span style="background-color: #66d9ff;">Clear Sky</span>
-        <span style="background-color: #00cc44;">Few</span>
-        <span style="color: black; background-color: yellow;">Scattered</span>
-        <span style="background-color: orange;">Broken</span>
-        <span style="background-color: red;">Overcast</span>
+      <table style="width:100%;">
+
+        <tr>
+          <td>
+            <span style="" id="hoverSpot">Help</span>
+          </td>
+          <td>
+            <span id="footer">
+            <span style="background-color: #66d9ff;">Clear Sky</span>
+            <span style="background-color: #00cc44;">Few</span>
+            <span style="color: black; background-color: yellow;">Scattered</span>
+            <span style="background-color: orange;">Broken</span>
+            <span style="background-color: red;">Overcast</span>
+          </td>
+          <td>
+            <span style="color: ghostwhite;">© 2016, ClearSkies</span>
+          </td>
+        </tr>
       </span>
+    </table>
     </footer>
   </div>
 </body>
