@@ -143,6 +143,7 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 #cber {
+  background: gainsboro;
   list-style: none;
   width: 100%;
   padding: 0;
