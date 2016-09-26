@@ -68,7 +68,7 @@ header h2 {
   margin: 0;
 }
 
-.get_only_one {
+.get_only_one, #corridor_width {
   border-radius: 5px;
 }
 
@@ -177,6 +177,11 @@ table {
   /*margin-top: 100px;*/
   padding: 7px 15px 7px 15px;
   border-radius: 5px;
+}
+
+#hoverSpot, #copy {
+  display: inline-block;
+  margin-top: 15px;
 }
 
 #tooltip {
