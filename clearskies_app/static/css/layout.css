@@ -44,6 +44,7 @@ header h2 {
   position: fixed;
   /*height: 100%;*/
   width: 25%;
+  min-width: 25%;
   float: left;
   background: #ccc;
   bottom: 50px;
