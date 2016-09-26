@@ -177,7 +177,7 @@ table {
 #tooltip {
     display: none;
     border: 10px solid grey;
-    width: 23%;
+    width: 80%;
     position: absolute;
     background-color: black;
     bottom: 70px;
