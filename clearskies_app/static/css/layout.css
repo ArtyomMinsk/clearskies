@@ -201,3 +201,20 @@ li.active a, li.active a:hover {
 background:#ccc;
 color:#4c4c4c;
 }
+
+.airfield {
+  margin-bottom: 7px;
+}
+
+.airfield ul {
+  padding-left: 20px;
+  list-style: square;
+}
+
+.airfield ul li {
+}
+
+.airfield ul li span{
+  margin-left: -15px;
+  font-size: 0.9em;
+}

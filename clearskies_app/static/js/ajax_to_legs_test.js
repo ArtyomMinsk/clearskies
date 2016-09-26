@@ -37,7 +37,7 @@ $.ajax({type: "GET",
                 $item.append(weatherStation.identifier + '-' + weatherStation.name)
                 $item.append($ceiling)
                 weatherStation.ceiling.forEach(function(text) {
-                  $ceiling.append('<li>' + text + '</li>');
+                  $ceiling.append('<li><span>' + text + '</span></li>');
                 });
             });
         });
