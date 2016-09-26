@@ -49,6 +49,8 @@ header h2 {
   bottom: 50px;
   top: 50px;
   overflow-y: scroll;
+  padding: 0;
+  margin: 0;
 }
 
 .tab-content {
