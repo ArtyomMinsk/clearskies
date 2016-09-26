@@ -54,7 +54,7 @@ header h2 {
 .tab-content {
   background: #ccc;
   margin: 0 auto;
-  padding: 10%;
+  padding: 5%;
 }
 
 #map {
@@ -77,7 +77,7 @@ header h2 {
 }
 
 .tab-links li {
-  margin-top: 5px;
+  margin-top: 0px;
   width: 50%;
 }
 
@@ -85,7 +85,7 @@ header h2 {
   text-decoration: none;
   text-align: center;
   padding: 5px 5px 0 5px;
-  border-radius: 10px 10px 0 0;
+  border-radius: 0px 0px 0 0;
   display: inline-block;
   width: 100%;
   color: ghostwhite;
