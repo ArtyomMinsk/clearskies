@@ -68,7 +68,7 @@ header h2 {
   margin: 0;
 }
 
-.get_only_one {
+.get_only_one, #corridor_width {
   border-radius: 5px;
 }
 
