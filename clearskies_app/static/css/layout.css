@@ -179,9 +179,16 @@ table {
   border-radius: 5px;
 }
 
-#hoverSpot, #copy {
+#hoverSpot {
   display: inline-block;
   margin-top: 15px;
+}
+
+#copy {
+  /*text-align: right; */
+  display: inline-block;
+  margin-top: 15px;
+  margin-right: -30px;
 }
 
 #tooltip {
