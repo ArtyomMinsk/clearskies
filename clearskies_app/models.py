@@ -55,7 +55,9 @@ class METAR:
             returnstring += 'Few clouds at '
             returnstring += str(self.parse_number(item[3:]))
             returnstring += '00 feet AGL'
-        self.ceiling.append(returnstring)
+        if returnstring:
+            self.ceiling.append(returnstring)
+
 
     def parse_number(self, string):
         while string and string[0] == '0':
