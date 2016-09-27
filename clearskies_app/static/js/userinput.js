@@ -43,7 +43,6 @@ function add_leg() {
 
 
 $(document).on('click', '.delete', function(e) {
-  console.log('click!')
   $(this).parent().remove();
   get_airfields();
 })
@@ -59,7 +58,6 @@ $("#leg_boxes").on('keydown', 'input,select', function(e) {
 
 
 function get_airfields() {
-  console.log('I am here at get_markers')
   var allAirfields = [];
   $('.get_only_one').each(function() {
     var airportID = 'K' + this.value.toUpperCase()
@@ -82,9 +80,7 @@ var markers = [];
 function plot_to_map(allAirfields) {
   setMapOnAll(null);
   markers = [];
-  console.log('I am here at plot_to_map')
   allAirfields.forEach(function(airfield) {
-    console.log('I am here in the forEach loop');
     var marker = new google.maps.Marker({
       position: new google.maps.LatLng(airfield.latitude, airfield.longitude),
     });
@@ -102,7 +98,6 @@ function plot_to_map(allAirfields) {
 
 
 function setMapOnAll(map) {
-  console.log('I am here at setMapOnAll')
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(map);
   }

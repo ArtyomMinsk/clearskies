@@ -2,7 +2,6 @@
 document.getElementById("corridor_width").defaultValue = 0.2;
 $("#get_all").on('click', function(e) {
 
-    console.log("clickityCLACK")
     var currentAttrValue = $('#tabs .tab-links a').attr('href');
     $('#tabs .tab-links a').parent('li').removeClass('active');
     $('#tabs ' + currentAttrValue).hide(400);
@@ -19,16 +18,13 @@ $("#get_all").on('click', function(e) {
   });
 
 mydata={'waypoint': wypts, 'corridor_width': $("#corridor_width").val()}
-console.log(mydata);
 $.ajax({type: "GET",
         url: '/fp/',
         data : mydata,
         traditional: true,
     }).done(function(weatherStations) {
             setMapOnAll(null);
-            console.log(weatherStations);
             $('#cber').children().remove();
-            console.log('Removed #cber children')
             weatherStations.forEach(function(weatherStation) {
                 var $item = $('<li class="airfield"></li>')
                 var $ceiling = $('<ul></ul>')
@@ -83,7 +79,6 @@ function colored_markers_on_map(weather){
         });
 
         newMarker.addListener('mouseover', function() {
-            console.log(newMarker.wID)
             highLightData(newMarker.wID, "yes")
         });
 

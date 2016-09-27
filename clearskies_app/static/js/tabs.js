@@ -6,7 +6,6 @@ $(document).ready(function() {
         $(this).parent('li').addClass('active').siblings().removeClass('active');
         // Change tab coloration to whatever it wasn't
         var switchBack = document.getElementById("firstSwitch").style.color;
-        console.log(switchBack)
         if (switchBack == "black")
             {document.getElementById("firstSwitch").style = "background-color:#gray; color:ghostwhite;"}
             else
