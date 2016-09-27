@@ -7,10 +7,6 @@ from django.views.decorators.cache import cache_page
 import time
 
 
-def home(request):
-    return render(request, 'clearskies_app/plan_art.html', context=None)
-
-
 def test(request):
     return render(request, 'clearskies_app/layout.html', context=None)
 
@@ -26,8 +22,6 @@ def get_corridor_airports(st, fin, width):
     startLON = start.longitude
     finishLAT = finish.latitude
     finishLON = finish.longitude
-    print("st: fin:", start, finish)
-    print("startLAT, startLON, finishLAT, finishLON", startLAT, startLON, finishLAT, finishLON)
 
     if startLAT < finishLAT:
         x1 = startLAT
@@ -129,7 +123,6 @@ def legs(request):
     weather_stations = []
     identifiers = request.GET.getlist('waypoint')
     corr_width = request.GET.get('corridor_width')
-    print('corr_width: ', corr_width, type(corr_width))
 
     for i in range(len(identifiers)):
         if (i + 1) != len(identifiers):
@@ -149,7 +142,6 @@ def legs(request):
         full_list.append(datapoint)
 
 
-    print("--- %s seconds ---" % (time.time() - start_time))
     return JsonResponse(full_list, safe=False)
 
 
