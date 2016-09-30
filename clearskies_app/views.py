@@ -129,15 +129,20 @@ def legs(request):
             weather_stations += weather_list[1:]
 
     full_list = []
+    airfield_ids = []
     for item in weather_stations:
-        datapoint = {"identifier": item[0].identifier,
-                     "name": item[0].name,
-                     "city": item[0].city,
-                     "state": item[0].state,
-                     "latitude": item[0].latitude,
-                     "longitude": item[0].longitude,
-                     "ceiling": item[1].ceiling}
-        full_list.append(datapoint)
+        if item[0].identifier in airfield_ids:
+            continue
+        else:
+            datapoint = {"identifier": item[0].identifier,
+                         "name": item[0].name,
+                         "city": item[0].city,
+                         "state": item[0].state,
+                         "latitude": item[0].latitude,
+                         "longitude": item[0].longitude,
+                         "ceiling": item[1].ceiling}
+            full_list.append(datapoint)
+            airfield_ids.append(item[0].identifier)
 
     return JsonResponse(full_list, safe=False)
 
