@@ -1,8 +1,5 @@
 from __future__ import unicode_literals
-
 from django.db import models
-
-# Create your models here.
 
 
 class Airfield(models.Model):
@@ -57,7 +54,6 @@ class METAR:
             returnstring += '00 feet AGL'
         if returnstring:
             self.ceiling.append(returnstring)
-
 
     def parse_number(self, string):
         while string and string[0] == '0':

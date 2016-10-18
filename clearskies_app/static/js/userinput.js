@@ -35,19 +35,18 @@ function add_leg() {
   });
   var target = $('#leg_boxes');
   var newfield = $('<div class="userinput"></div>');
-  newfield.append("<input type='text' name='waypoint' class='get_only_one' style='text-transform:uppercase' placeholder='TAB for new waypoint' autofocus/><button class='leg_button delete'><img class='glyph' src='/static/img/deleteglyph.svg'></button>");
+  newfield.append("<input type='text' name='waypoint' class='get_only_one' \
+                  style='text-transform:uppercase' placeholder='TAB for new waypoint' \
+                  autofocus/><button class='leg_button delete'><img class='glyph' \
+                  src='/static/img/deleteglyph.svg'></button>");
   target.append(newfield);
   get_airfields();
 }
-
-
 
 $(document).on('click', '.delete', function(e) {
   $(this).parent().remove();
   get_airfields();
 })
-
-
 
 $("#leg_boxes").on('keydown', 'input,select', function(e) {
     var keyCode = e.keyCode || e.which;
@@ -55,7 +54,6 @@ $("#leg_boxes").on('keydown', 'input,select', function(e) {
         add_leg();
     }
 });
-
 
 function get_airfields() {
   var allAirfields = [];
@@ -73,7 +71,6 @@ function get_airfields() {
     }
   })
 }
-
 
 var markers = [];
 
@@ -95,7 +92,6 @@ function plot_to_map(allAirfields) {
     setMapOnAll(map);
   })
 }
-
 
 function setMapOnAll(map) {
   for (var i = 0; i < markers.length; i++) {

@@ -12,9 +12,12 @@ def load_data(apps, schema_editor):
     with open('airports_NorthAm_only_K.csv') as f:
         reader = csv.reader(f)
         for row in reader:
-            temp = Airfield(identifier=row[1], name=row[3],
-                            latitude=float(row[4]), longitude=float(row[5]),
-                            state=row[9][-2:], city=row[10])
+            temp = Airfield(identifier=row[1],
+                            name=row[3],
+                            latitude=float(row[4]),
+                            longitude=float(row[5]),
+                            state=row[9][-2:],
+                            city=row[10])
             temp.save()
 
 
@@ -23,7 +26,7 @@ class Migration(migrations.Migration):
     dependencies = [
         ('clearskies_app', '0001_initial'),
     ]
- 
+
     operations = [
         migrations.RunPython(load_data)
     ]
