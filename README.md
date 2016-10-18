@@ -14,7 +14,7 @@ Currently, general aviation pilots have two options to get cloud base informatio
 
 ## Live Demo
 
-Please click on the following link to run the web application: http://clearskies.herokuapp.com/
+Please click on the following link to run the web application: [ClearSkies](http://clearskies.herokuapp.com/)
 
 ## Special Instructions
 
@@ -27,6 +27,6 @@ https://developers.google.com/maps/documentation/
 
 ## Collaborators
 
-T Robert Ward: https://github.com/TRIYGH
-Peter Lawless: https://github.com/peterlawless
-Artsiom Nestsiarenka: https://github.com/ArtyomMinsk
+- T Robert Ward: https://github.com/TRIYGH
+- Peter Lawless: https://github.com/peterlawless
+- Artsiom Nestsiarenka: https://github.com/ArtyomMinsk
