@@ -1,10 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from .models import Airfield, METAR
 from numpy import arange
 import requests
-from django.views.decorators.cache import cache_page
-import time
+# from django.views.decorators.cache import cache_page
 
 
 def test(request):
@@ -18,23 +17,23 @@ def get_corridor_airports(st, fin, width):
     if wx:
         airport_weather.append((start, METAR(wx)))
     finish = Airfield.objects.get(identifier=fin)
-    startLAT = start.latitude
-    startLON = start.longitude
-    finishLAT = finish.latitude
-    finishLON = finish.longitude
+    start_lat = start.latitude
+    start_lon = start.longitude
+    finish_lat = finish.latitude
+    finish_lon = finish.longitude
 
-    if startLAT < finishLAT:
-        x1 = startLAT
-        x2 = finishLAT
+    if start_lat < finish_lat:
+        x1 = start_lat
+        x2 = finish_lat
     else:
-        x2 = startLAT
-        x1 = finishLAT
-    if startLON < finishLON:
-        y1 = startLON
-        y2 = finishLON
+        x2 = start_lat
+        x1 = finish_lat
+    if start_lon < finish_lon:
+        y1 = start_lon
+        y2 = finish_lon
     else:
-        y2 = startLON
-        y1 = finishLON
+        y2 = start_lon
+        y1 = finish_lon
     # check for min width
     if x2 - x1 < 1.0:
         short = (1-(x2-x1))/2
@@ -50,12 +49,12 @@ def get_corridor_airports(st, fin, width):
                                                 latitude__lte=x2,
                                                 longitude__gte=y1,
                                                 longitude__lte=y2)
-    lat_diff = abs(startLAT - finishLAT)
-    lon_diff = abs(startLON - finishLON)
+    lat_diff = abs(start_lat - finish_lat)
+    lon_diff = abs(start_lon - finish_lon)
     if lon_diff > lat_diff:
         ratio = lat_diff / (lon_diff * 10)
         step_thru = "lon"
-        if startLON < finishLON:
+        if start_lon < finish_lon:
             increment = 0.1
             extend = 0.4
         else:
@@ -64,7 +63,7 @@ def get_corridor_airports(st, fin, width):
     else:
         ratio = lon_diff / (lat_diff * 10)
         step_thru = "lat"
-        if startLAT < finishLAT:
+        if start_lat < finish_lat:
             increment = 0.1
             extend = 0.4
         else:
@@ -72,47 +71,56 @@ def get_corridor_airports(st, fin, width):
             extend = -0.4
 
     if step_thru == "lon":
-        startP = startLON
-        finishP = finishLON
+        start_point = start_lon
+        finish_point = finish_lon
     else:
-        startP = startLAT
-        finishP = finishLAT
+        start_point = start_lat
+        finish_point = finish_lat
 
-    for i in arange(startP, finishP + extend, increment):
+    for i in arange(start_point, finish_point + extend, increment):
         if step_thru == 'lon':
             for each_airport in selected_airports:
-                if each_airport.latitude <= startLAT + width and each_airport.latitude >= startLAT - width and each_airport.longitude <= i and each_airport.longitude >= i - 0.1:
+                if each_airport.latitude <= start_lat + width and \
+                    each_airport.latitude >= start_lat - width and \
+                    each_airport.longitude <= i and \
+                    each_airport.longitude >= i - 0.1:
+
                     wx = get_data(each_airport.identifier)
                     if wx:
                         airport_weather.append((each_airport, METAR(wx)))
-            if startLAT > finishLAT:
-                startLAT -= ratio
+            if start_lat > finish_lat:
+                start_lat -= ratio
             else:
-                startLAT += ratio
+                start_lat += ratio
 
         elif step_thru == 'lat':
             for each_airport in selected_airports:
-                if each_airport.longitude <= startLON + width and each_airport.longitude >= startLON - width and each_airport.latitude <= i and each_airport.latitude >= i - 0.1:
+                if each_airport.longitude <= start_lon + width and \
+                    each_airport.longitude >= start_lon - width and \
+                    each_airport.latitude <= i and \
+                    each_airport.latitude >= i - 0.1:
+
                     wx = get_data(each_airport.identifier)
                     if wx:
                         airport_weather.append((each_airport, METAR(wx)))
-            if startLON > finishLON:
-                startLON -= ratio
+            if start_lon > finish_lon:
+                start_lon -= ratio
             else:
-                startLON += ratio
+                start_lon += ratio
 
     wx = get_data(finish.identifier)
     if wx:
         airport_weather.append((finish, METAR(wx)))
     dup = len(airport_weather) - 1
     for i in range(dup, 0, -1):
-        if airport_weather[i] == airport_weather[i-1] or airport_weather[i] == airport_weather[i-2]:
+        if airport_weather[i] == airport_weather[i-1] or \
+            airport_weather[i] == airport_weather[i-2]:
             airport_weather.pop(i)
     return airport_weather
 
 
 # this function gets the all airports in the whole flight path
-# @cache_page(60 * 0)
+# @cache_page(60 * 15)
 def legs(request):
     weather_stations = []
     identifiers = request.GET.getlist('waypoint')
@@ -143,7 +151,6 @@ def legs(request):
                          "ceiling": item[1].ceiling}
             full_list.append(datapoint)
             airfield_ids.append(item[0].identifier)
-
     return JsonResponse(full_list, safe=False)
 
 
@@ -165,8 +172,11 @@ def get_data(AI):
 def instant_plot(request):
     if request.method == "GET":
         temp = get_object_or_404(Airfield, identifier=request.GET['airportID'])
-        airfield = {'latitude': temp.latitude, 'longitude': temp.longitude,
-                    'name': temp.name, 'city': temp.city, 'state': temp.state,
+        airfield = {'latitude': temp.latitude,
+                    'longitude': temp.longitude,
+                    'name': temp.name,
+                    'city': temp.city,
+                    'state': temp.state,
                     'identifier': temp.identifier}
     else:
         airfield = {}

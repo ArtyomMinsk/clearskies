@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from . import views
-from django.views.decorators.cache import cache_page
+# from django.views.decorators.cache import cache_page
 
 app_name = 'clearskies_app'
 urlpatterns = [
