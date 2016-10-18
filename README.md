@@ -16,7 +16,7 @@ Currently, general aviation pilots have two options to get cloud base informatio
 
 Please click on the following link to run the web application: [ClearSkies](http://clearskies.herokuapp.com/)
 
-## Special Instructions
+## Installation
 
 In order to obtain the correct versions of everything needed to run this web application,
 you will have to ```pip install -r requirements.txt```.
