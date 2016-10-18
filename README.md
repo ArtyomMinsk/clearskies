@@ -1,19 +1,32 @@
-## ClearSkies
+# ClearSkies
 
-Currently, general aviation pilots have two options to get cloud base information
- when developing a flight plan. They can call flight service and have a report
- read to them over the phone, or they can use an app that returns the raw,
- unparsed METAR data along their route. Neither are especially helpful in displaying
-  the relevant data in a clear or meaningful manner.  In response to this, we created
-  ClearSkies, a simple, single-page app that allows a pilot to specify the waypoints
-  of a flight plan (by unique airport identifier) and returns the cloud base information
-  along the route.
+## Description
 
-The weather data is collected by Automated Weather Observation Stations (AWOS) at
-airports which is sent to the FAA's Aviation Weather Center to be queried by our app's back end.
-
+ClearSkies is the web application that allows a general aviation pilot to specify the waypoints
+of a flight plan (by unique airport identifier) and returns the cloud base information
+along the route.
 This app utilizes the Google Maps API to draw a map of the flight plan and plot
-color-coded markers to represent the cloud conditions.  When a user clicks on one of these markers,
-an information window containing that airfield's identifier, name, and coordinates will
-populate, allowing the pilot to familiarize him or herself with the airfields along the
-flight route.
+color-coded markers to represent the cloud conditions.
+
+## Motivation
+
+Currently, general aviation pilots have two options to get cloud base information when developing a flight plan. They can call flight service and have a report read to them over the phone, or they can use an app that returns the raw, unparsed METAR data along their route. Neither are especially helpful in displaying the relevant data in a clear or meaningful manner.
+
+## Live Demo
+
+Please click on the following link to run the web application: http://clearskies.herokuapp.com/
+
+## Special Instructions
+
+In order to obtain the correct versions of everything needed to run this web application,
+you will have to ```pip install -r requirements.txt```.
+
+## API Reference
+
+https://developers.google.com/maps/documentation/
+
+## Collaborators
+
+T Robert Ward: https://github.com/TRIYGH
+Peter Lawless: https://github.com/peterlawless
+Artsiom Nestsiarenka: https://github.com/ArtyomMinsk
