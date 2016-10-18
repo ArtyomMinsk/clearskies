@@ -23,7 +23,7 @@ you will have to ```pip install -r requirements.txt```.
 
 ## API Reference
 
-https://developers.google.com/maps/documentation/
+Google Maps API: https://developers.google.com/maps/documentation/
 
 ## Collaborators
 
